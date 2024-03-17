@@ -4,6 +4,8 @@
 
 Color picker for Neos CMS who saves the color in the [`OKLCH`] color space
 
+![screenshot]
+
 ## Installation
 
 `Carbon.ColorPicker.OKLCH` is available via packagist.
@@ -122,6 +124,7 @@ Foo.Bar:Your.Prototype:
             allowEmpty: false
 ```
 
+[screenshot]: https://github.com/CarbonPackages/Carbon.ColorPicker.OKLCH/assets/4510166/7dd1a0e3-da1e-41d2-a910-9093d9eef307
 [tailwind oklch plugin]: https://github.com/MartijnCuppens/tailwindcss-oklch
 [`oklch`]: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch
 [packagist]: https://packagist.org/packages/carbon/colorpicker-oklch
