@@ -2,7 +2,7 @@
 
 # Carbon.ColorPicker.OKLCH
 
-Color picker for Neos CMS who saves the color in the [`Oklch`] color space
+Color picker for Neos CMS who saves the color in the [`OKLCH`] color space
 
 ## Installation
 
@@ -20,8 +20,8 @@ Then run `composer update` in your project root.
 The color picker don't store only the given value, it stores an array with following value:
 
 - `hex`: The color in hex format
-- `oklch`: The color in the [`Oklch`] color space
-- `coords`: The values in the [`Oklch`] color space. This is great for any color transformation
+- `oklch`: The color in the [`OKLCH`] color space
+- `coords`: The values in the [`OKLCH`] color space. This is great for any color transformation. Very handy if you use something like the [Tailwind OKLCH Plugin]
 - `lightness`: The lightness of the coosen color
 
 ```json
@@ -122,6 +122,7 @@ Foo.Bar:Your.Prototype:
             allowEmpty: false
 ```
 
+[tailwind oklch plugin]: https://github.com/MartijnCuppens/tailwindcss-oklch
 [`oklch`]: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch
 [packagist]: https://packagist.org/packages/carbon/colorpicker-oklch
 [latest stable version]: https://poser.pugx.org/carbon/colorpicker-oklch/v/stable
