@@ -2,7 +2,7 @@
 import React from "react";
 import { neos } from "@neos-project/neos-ui-decorators";
 import { HexColorPicker, HexColorInput } from "react-colorful";
-import { onHexChange, setLightness, OptionWithPreview, LightnessSlider } from "./Utils";
+import { onHexChange, setLightness, OptionPreview, LightnessSlider } from "./Utils";
 import { IconButton, SelectBox } from "@neos-project/react-ui-components";
 import * as stylex from "@stylexjs/stylex";
 import { colors, sizes, fonts, transitions } from "./Utils/Tokens.stylex";
@@ -187,7 +187,7 @@ function Editor(props) {
                     placeholder={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:preset")}
                     allowEmpty={false}
                     onValueChange={handleHexChange}
-                    ListPreviewElement={OptionWithPreview}
+                    ListPreviewElement={OptionPreview}
                 />
             )}
         </div>

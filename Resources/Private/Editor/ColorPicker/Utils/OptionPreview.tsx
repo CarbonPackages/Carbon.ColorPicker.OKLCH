@@ -1,5 +1,5 @@
 // @ts-ignore
-import React, { PureComponent } from "react";
+import React from "react";
 import * as stylex from "@stylexjs/stylex";
 import { colors, sizes, fonts } from "./Tokens.stylex";
 

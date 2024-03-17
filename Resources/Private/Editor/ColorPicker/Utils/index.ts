@@ -1,5 +1,5 @@
 import { onHexChange, setLightness } from "./ColorConverter";
-import OptionWithPreview from "./OptionWithPreview";
+import OptionPreview from "./OptionPreview";
 import LightnessSlider from "./LightnessSlider";
 
-export { onHexChange, OptionWithPreview, setLightness, LightnessSlider };
+export { onHexChange, OptionPreview, setLightness, LightnessSlider };
