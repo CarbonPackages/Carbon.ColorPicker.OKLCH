@@ -1,0 +1,17 @@
+{
+  "overrides": [
+    {
+      "files": ["*.yaml", "*.yml"],
+      "options": {
+        "singleQuote": true
+      }
+    },
+    {
+      "files": ["*.xlf"],
+      "options": {
+        "parser": "xml"
+      }
+    }
+  ],
+  "plugins": ["@prettier/plugin-xml"]
+}

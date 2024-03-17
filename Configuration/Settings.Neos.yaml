@@ -1,0 +1,15 @@
+Neos:
+  Neos:
+    Ui:
+      resources:
+        javascript:
+          Carbon.ColorPicker.OKLCH:
+            resource: resource://Carbon.ColorPicker.OKLCH/Public/Plugin.js
+        stylesheets:
+          Carbon.ColorPicker.OKLCH:
+            resource: resource://Carbon.ColorPicker.OKLCH/Public/Plugin.css
+    userInterface:
+      translation:
+        autoInclude:
+          Carbon.ColorPicker.OKLCH:
+            - Main

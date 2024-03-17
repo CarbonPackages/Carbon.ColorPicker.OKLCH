@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file
+        original=""
+        product-name="Carbon.ColorPicker.OKLCH"
+        source-language="en"
+        target-language="de"
+        datatype="plaintext"
+    >
+        <body>
+            <trans-unit id="resetColor" xml:space="preserve">
+                <source>Reset color</source>
+                <target>Farbe zurücksetzen</target>
+            </trans-unit>
+            <trans-unit id="lightness" xml:space="preserve">
+                <source>Lightness</source>
+                <target>Helligkeit</target>
+            </trans-unit>
+            <trans-unit id="preset" xml:space="preserve">
+                <source>Choose from preset</source>
+                <target>Aus einer Voreinstellung wählen</target>
+            </trans-unit>
+            <trans-unit id="setHexColor" xml:space="preserve">
+                <source>Enter hexadecimal color</source>
+                <target>Hexadezimal-Farbe eingeben</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,25 @@
+{
+  "description": "Carbon.ColorPicker.OKLCH",
+  "license": "proprietary",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs --production",
+    "watch": "node build.mjs --watch",
+    "dev": "node build.mjs"
+  },
+  "devDependencies": {
+    "@neos-project/neos-ui-extensibility": "~8.3.6",
+    "@neos-project/react-ui-components": "^8.3.6",
+    "@prettier/plugin-xml": "^3.3.1",
+    "@stylexjs/esbuild-plugin": "^0.5.1",
+    "@stylexjs/eslint-plugin": "^0.5.1",
+    "@stylexjs/stylex": "^0.5.1",
+    "colorjs.io": "^0.5.0",
+    "esbuild": "^0.20.2",
+    "eslint": "^8.57.0",
+    "nanoid": "^5.0.6",
+    "onchange": "^7.1.0",
+    "prettier": "^3.2.5",
+    "react-colorful": "^5.6.1"
+  }
+}

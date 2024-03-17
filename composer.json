@@ -1,0 +1,30 @@
+{
+    "name": "carbon/colorpicker-oklch",
+    "type": "neos-carbon",
+    "description": "Color picker for Neos CMS who saves the color in the OKLCH color space",
+    "license": "GPL-3.0",
+    "keywords": [
+        "neos",
+        "neoscms",
+        "flow",
+        "color",
+        "editor",
+        "picker"
+    ],
+    "authors": [
+        {
+            "name": "Jon Uhlmann",
+            "email": "hello@uhlmann.pro",
+            "homepage": "https://www.uhlmann.pro",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "neos/neos-ui": "^7.3 || ^8.0 || ^9.0"
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Carbon.ColorPicker.OKLCH"
+        }
+    }
+}
