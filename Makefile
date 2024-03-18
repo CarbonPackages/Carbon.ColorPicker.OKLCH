@@ -4,7 +4,7 @@
 
 ## Prettier files
 prettier:
-	@pnpm prettier --write --no-error-on-unmatched-pattern '**/*.{yaml,ts,tsx,mjs,js,xlf,md}'
+	@pnpm prettier --write --no-error-on-unmatched-pattern '**/*.{yaml,ts,tsx,mjs,js,md}'
 
 ## Watch for changes in files and run prettier
 prettier-watch:
