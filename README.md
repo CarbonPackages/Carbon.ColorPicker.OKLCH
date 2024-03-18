@@ -75,8 +75,10 @@ Neos:
           showHexInput: true
           # Show color picker
           showPicker: true
-          # Show slider to st the lightness
-          showLightnessSlider: true
+          # Show slider to set the lightness
+          showLightness: false
+          # Show slider to set the luminance
+          showLuminance: false
           # The precision of the OKLCH color picker. Set to 0 to disable rounding and use the raw values.
           precision: 5
           # The presets are based on https://tailwindcss.com/docs/customizing-colors with the key 600
@@ -119,12 +121,13 @@ Foo.Bar:Your.Prototype:
           editor: "Carbon.ColorPicker/OKLCH"
           group: yourGroupName
           editorOptions:
-            showLightnessSlider: false
+            showLightness: true
+            showLuminance: true
             disable: true
             allowEmpty: false
 ```
 
-[screenshot]: https://github.com/CarbonPackages/Carbon.ColorPicker.OKLCH/assets/4510166/7dd1a0e3-da1e-41d2-a910-9093d9eef307
+[screenshot]: https://github.com/CarbonPackages/Carbon.ColorPicker.OKLCH/assets/4510166/7cd440ac-ca24-459c-b71f-bfb896592cc8
 [tailwind oklch plugin]: https://github.com/MartijnCuppens/tailwindcss-oklch
 [`oklch`]: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch
 [packagist]: https://packagist.org/packages/carbon/colorpicker-oklch

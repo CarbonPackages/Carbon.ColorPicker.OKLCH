@@ -1,9 +1,8 @@
 // @ts-ignore
 import React, { useEffect, useState } from "react";
-import { Label } from "@neos-project/react-ui-components";
 import { nanoid } from "nanoid";
 import * as stylex from "@stylexjs/stylex";
-import { colors, sizes, fonts, transitions } from "./Tokens.stylex";
+import { colors, sizes, fonts, transitions } from "../Tokens.stylex";
 
 const styles = stylex.create({
     wrapper: {
@@ -23,6 +22,11 @@ const styles = stylex.create({
         display: "flex",
         justifyContent: "space-between",
         gap: sizes.spacingHalf,
+    },
+    label: {
+        userSelect: "none",
+        cursor: "pointer",
+        fontSize: fonts.size,
     },
     numberInput: {
         padding: `${sizes.spacingQuarter} ${sizes.spacingHalf}`,
@@ -140,7 +144,9 @@ export default function RangeSlider({
     return (
         <div {...stylex.props(styles.wrapper, disabled && styles.disabled)}>
             <div {...stylex.props(styles.labelWrapper)}>
-                <Label for={id}>{label}</Label>
+                <label htmlFor={id} {...stylex.props(styles.label)}>
+                    {label}
+                </label>
                 <input
                     {...stylex.props(styles.numberInput)}
                     style={{ minWidth: minWidthInput }}

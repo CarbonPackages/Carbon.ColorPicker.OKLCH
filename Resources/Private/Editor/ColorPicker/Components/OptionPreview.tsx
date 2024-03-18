@@ -1,7 +1,7 @@
 // @ts-ignore
 import React from "react";
 import * as stylex from "@stylexjs/stylex";
-import { colors, sizes, fonts } from "./Tokens.stylex";
+import { colors, sizes, fonts } from "../Tokens.stylex";
 
 const styles = stylex.create({
     preview: {

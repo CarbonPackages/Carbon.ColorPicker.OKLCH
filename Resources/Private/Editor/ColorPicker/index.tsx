@@ -2,10 +2,10 @@
 import React from "react";
 import { neos } from "@neos-project/neos-ui-decorators";
 import { HexColorPicker, HexColorInput } from "react-colorful";
-import { onHexChange, setLightness, OptionPreview, LightnessSlider } from "./Utils";
+import { onHexChange, setLuminance, setLightness, OptionPreview, RangeSlider } from "./Components";
 import { IconButton, SelectBox } from "@neos-project/react-ui-components";
 import * as stylex from "@stylexjs/stylex";
-import { colors, sizes, fonts, transitions } from "./Utils/Tokens.stylex";
+import { colors, sizes, fonts, transitions } from "./Tokens.stylex";
 
 const neosifier = neos((globalRegistry) => ({
     i18nRegistry: globalRegistry.get("i18n"),
@@ -19,7 +19,8 @@ const defaultProps = {
         showPresets: true,
         showPicker: true,
         showHexInput: true,
-        showLightnessSlider: true,
+        showLightness: false,
+        showLuminance: false,
         precision: 5,
         presets: {},
     },
@@ -116,8 +117,17 @@ const styles = stylex.create({
 function Editor(props) {
     const options = { ...defaultProps.options, ...props.config, ...props.options };
     const { value, commit, highlight, i18nRegistry } = props;
-    const { disabled, allowEmpty, presets, precision, showPresets, showPicker, showHexInput, showLightnessSlider } =
-        options;
+    const {
+        disabled,
+        allowEmpty,
+        presets,
+        precision,
+        showPresets,
+        showPicker,
+        showHexInput,
+        showLightness,
+        showLuminance,
+    } = options;
 
     function onReset() {
         commit({});
@@ -131,6 +141,10 @@ function Editor(props) {
         handleHexChange(setLightness(value?.hex, lightness));
     }
 
+    function handleLuminanceChange(luminance: number) {
+        handleHexChange(setLuminance(value?.oklch, luminance));
+    }
+
     const presetOptions =
         showPresets &&
         presets &&
@@ -138,18 +152,29 @@ function Editor(props) {
             .map(([key, color]) => ({ value: color, label: key }))
             .filter((preset) => !!preset.value);
 
+    const lightness = value?.lightness || 0;
+    const luminance = value?.coords?.l || 0;
+
     return (
         <div {...stylex.props(styles.wrapper, disabled && styles.disabled)}>
             {Boolean(showPicker) && (
                 <HexColorPicker {...stylex.props(styles.colorPicker)} color={value?.hex} onChange={handleHexChange} />
             )}
 
-            {Boolean(showLightnessSlider) && (
-                <LightnessSlider
+            {Boolean(showLightness) && (
+                <RangeSlider
                     disabled={value?.hex ? false : true}
-                    value={value?.lightness || 0}
+                    value={lightness}
                     onChange={handleLightnessChange}
                     label={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:lightness")}
+                />
+            )}
+            {Boolean(showLuminance) && (
+                <RangeSlider
+                    disabled={value?.coords?.l ? false : true}
+                    value={luminance * 100}
+                    onChange={handleLuminanceChange}
+                    label={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:luminance")}
                 />
             )}
 

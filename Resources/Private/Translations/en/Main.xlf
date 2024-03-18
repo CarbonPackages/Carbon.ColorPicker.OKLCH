@@ -13,6 +13,9 @@
             <trans-unit id="lightness" xml:space="preserve">
                 <source>Lightness</source>
             </trans-unit>
+            <trans-unit id="luminance" xml:space="preserve">
+                <source>Luminance</source>
+            </trans-unit>
             <trans-unit id="preset" xml:space="preserve">
                 <source>Choose from preset</source>
             </trans-unit>

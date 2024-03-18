@@ -16,6 +16,10 @@
                 <source>Lightness</source>
                 <target>Helligkeit</target>
             </trans-unit>
+            <trans-unit id="luminance" xml:space="preserve">
+                <source>Luminance</source>
+                <target>Leuchtkraft</target>
+            </trans-unit>
             <trans-unit id="preset" xml:space="preserve">
                 <source>Choose from preset</source>
                 <target>Aus einer Voreinstellung wählen</target>

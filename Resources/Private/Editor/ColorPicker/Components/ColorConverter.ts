@@ -14,11 +14,18 @@ ColorSpace.register(sRGB);
 ColorSpace.register(OKLCH);
 ColorSpace.register(HSL);
 
-export function setLightness(input: string, lightness: number) {
-    const color = parseColor(input);
+export function setLightness(hex: string, lightness: number) {
+    const color = parseColor(hex);
     const hsl = convert(color, HSL);
     hsl.coords[2] = lightness;
     return serialize(convert(hsl, sRGB), { format: "hex" });
+}
+
+export function setLuminance(oklch: string, luminance: number) {
+    const color = parseColor(oklch);
+    color.coords[0] = luminance / 100;
+    const rgb = convert(color, sRGB);
+    return serialize(rgb, { format: "hex" });
 }
 
 export function onHexChange(hex: string, precision: number) {
