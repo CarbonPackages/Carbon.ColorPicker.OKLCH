@@ -32,6 +32,15 @@ export function setStateFromValue(
     mode: "all" | "hex" | "oklch" | "coords",
     precision: number,
 ) {
+    // Handle wrong initial values
+    if ((mode === "hex" || mode === "oklch") && typeof value === "object" && value !== null) {
+        value = value.toString();
+
+        if (value === "[object Object]") {
+            return {};
+        }
+    }
+
     if (
         !value ||
         (Array.isArray(value) && value.length === 0) ||

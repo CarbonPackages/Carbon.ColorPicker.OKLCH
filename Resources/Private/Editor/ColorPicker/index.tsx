@@ -147,18 +147,39 @@ function Editor(props) {
 
     useEffect(() => {
         if (!state?.hex) {
-            if (mode == "all" || mode == "coords") {
-                commit({});
+            if (value == "") {
                 return;
             }
+
+            // Make no commit if the color is empty
+            if (
+                (mode === "all" || mode === "coords") &&
+                (JSON.stringify(value) == "{}" || JSON.stringify(value) == "[]")
+            ) {
+                return;
+            }
+
             commit("");
             return;
         }
+
         if (mode === "all") {
-            commit({ hex: state.hex, oklch: state.oklch, coords: state.coords });
+            if (value.oklch != state.oklch) {
+                commit({ hex: state.hex, oklch: state.oklch, coords: state.coords });
+            }
             return;
         }
-        commit(state[mode]);
+
+        if (mode === "coords") {
+            if (JSON.stringify(value) != JSON.stringify(state.coords)) {
+                commit(state.coords);
+            }
+            return;
+        }
+
+        if (value != state[mode]) {
+            commit(state[mode]);
+        }
     }, [state]);
 
     function handleHexChange(hex: string) {
