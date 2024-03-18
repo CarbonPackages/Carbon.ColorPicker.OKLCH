@@ -5,6 +5,7 @@ export const colors = stylex.defineVars({
     primaryBlueHover: "var(--colors-PrimaryBlueHover)",
     contrastNeutral: "var(--colors-ContrastNeutral)",
     warn: "var(--colors-Warn)",
+    error: "var(--colors-Error)",
 });
 
 export const sizes = stylex.defineVars({

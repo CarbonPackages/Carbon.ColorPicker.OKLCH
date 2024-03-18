@@ -14,6 +14,69 @@ ColorSpace.register(sRGB);
 ColorSpace.register(OKLCH);
 ColorSpace.register(HSL);
 
+type CoordsValueType = {
+    l: number;
+    c: number;
+    h: number;
+};
+
+type ColorValueType = {
+    hex: string;
+    oklch: string;
+    coords: CoordsValueType;
+    lightness: number;
+};
+
+export function setStateFromValue(
+    value: null | undefined | string | ColorValueType | CoordsValueType,
+    mode: "all" | "hex" | "oklch" | "coords",
+    precision: number,
+) {
+    if (
+        !value ||
+        (Array.isArray(value) && value.length === 0) ||
+        (typeof value === "object" && Object.keys(value).length === 0)
+    ) {
+        return {};
+    }
+
+    if (mode === "all") {
+        // @ts-ignore
+        return value?.hex ? value : {};
+    }
+
+    if (mode === "coords") {
+        // @ts-ignore
+        if (value?.l === undefined || value?.c === undefined || value?.h === undefined) {
+            return {};
+        }
+        // @ts-ignore
+        return convertOKLCHFromValue(`oklch(${value.l} ${value.c} ${value.h})`, precision);
+    }
+
+    if (mode === "hex") {
+        return onHexChange(value as string, precision);
+    }
+
+    if (mode === "oklch") {
+        return convertOKLCHFromValue(value as string, precision);
+    }
+
+    return {};
+}
+
+function convertOKLCHFromValue(value: string, precision: number) {
+    const color = parseColor(value);
+    const lightness = getLightness(color);
+    const rgb = convert(color, sRGB);
+    return {
+        hex: serialize(rgb, { format: "hex" }),
+        oklch: serialize(color, { precision }),
+        coords: convertToOkLchCoords(color, precision),
+        lightness,
+    };
+}
+
 export function setLightness(hex: string, lightness: number) {
     const color = parseColor(hex);
     const hsl = convert(color, HSL);
@@ -28,7 +91,7 @@ export function setLuminance(oklch: string, luminance: number) {
     return serialize(rgb, { format: "hex" });
 }
 
-export function onHexChange(hex: string, precision: number) {
+export function onHexChange(hex: string, precision: number): ColorValueType {
     const color = parseColor(hex);
     const lightness = getLightness(color);
     const oklch = convert(color, OKLCH);
@@ -46,7 +109,7 @@ function getLightness(color: ColorConstructor) {
     return Math.round(coords[2]);
 }
 
-function convertToOkLchCoords(oklch: PlainColorObject, precision = 5) {
+function convertToOkLchCoords(oklch: PlainColorObject | ColorConstructor, precision = 5) {
     const { coords } = oklch;
     return {
         l: round(coords[0], precision),

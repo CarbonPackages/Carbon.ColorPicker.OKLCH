@@ -3,6 +3,8 @@ Neos:
     Ui:
       frontendConfiguration:
         Carbon.ColorPicker.OKLCH:
+          # Set the mode of the color picker. Possible values are: 'oklch', 'hex', 'coords', 'all'
+          mode: 'all'
           # Show preset selector
           showPresets: true
           # Show input field for hex input

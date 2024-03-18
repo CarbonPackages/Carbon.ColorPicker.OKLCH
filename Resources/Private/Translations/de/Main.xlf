@@ -28,6 +28,10 @@
                 <source>Enter hexadecimal color</source>
                 <target>Hexadezimal-Farbe eingeben</target>
             </trans-unit>
+            <trans-unit id="invalidMode" xml:space="preserve">
+                <source>Invalid mode "{0}" provided. Valid modes are "coords", "hex", "oklch" or "all".</source>
+                <target>Ungültiger Modus "{0}" angegeben. Gültige Modi sind "coords", "hex", "oklch" oder "all".</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

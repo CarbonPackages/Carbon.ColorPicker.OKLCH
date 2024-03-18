@@ -22,6 +22,9 @@
             <trans-unit id="setHexColor" xml:space="preserve">
                 <source>Enter hexadecimal color</source>
             </trans-unit>
+            <trans-unit id="invalidMode" xml:space="preserve">
+                <source>Invalid mode "{0}" provided. Valid modes are "coords", "hex", "oklch" or "all".</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

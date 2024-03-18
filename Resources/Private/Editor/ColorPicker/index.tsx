@@ -1,8 +1,8 @@
 // @ts-ignore
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { neos } from "@neos-project/neos-ui-decorators";
 import { HexColorPicker, HexColorInput } from "react-colorful";
-import { onHexChange, setLuminance, setLightness, OptionPreview, RangeSlider } from "./Components";
+import { onHexChange, setLuminance, setLightness, setStateFromValue, OptionPreview, RangeSlider } from "./Components";
 import { IconButton, SelectBox } from "@neos-project/react-ui-components";
 import * as stylex from "@stylexjs/stylex";
 import { colors, sizes, fonts, transitions } from "./Tokens.stylex";
@@ -14,6 +14,7 @@ const neosifier = neos((globalRegistry) => ({
 
 const defaultProps = {
     options: {
+        mode: "all",
         disabled: false,
         allowEmpty: true,
         showPresets: true,
@@ -33,6 +34,11 @@ const styles = stylex.create({
         ":where(*) *": {
             pointerEvents: "none",
         },
+    },
+    error: {
+        borderRadius: sizes.borderRadius,
+        background: colors.error,
+        padding: sizes.spacingQuarter,
     },
     highlight: {
         borderRadius: sizes.borderRadius,
@@ -118,31 +124,53 @@ function Editor(props) {
     const options = { ...defaultProps.options, ...props.config, ...props.options };
     const { value, commit, highlight, i18nRegistry } = props;
     const {
-        disabled,
         allowEmpty,
-        presets,
+        disabled,
+        mode,
         precision,
-        showPresets,
-        showPicker,
+        presets,
         showHexInput,
         showLightness,
         showLuminance,
+        showPicker,
+        showPresets,
     } = options;
-
-    function onReset() {
-        commit({});
+    if (mode !== "coords" && mode !== "hex" && mode !== "all" && mode !== "oklch") {
+        return (
+            <div {...stylex.props(styles.error)}>
+                {i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:invalidMode", "", [mode])}
+            </div>
+        );
     }
 
+    const [state, setState] = useState(setStateFromValue(value, mode, precision));
+
+    useEffect(() => {
+        if (!state?.hex) {
+            if (mode == "all" || mode == "coords") {
+                commit({});
+                return;
+            }
+            commit("");
+            return;
+        }
+        if (mode === "all") {
+            commit({ hex: state.hex, oklch: state.oklch, coords: state.coords });
+            return;
+        }
+        commit(state[mode]);
+    }, [state]);
+
     function handleHexChange(hex: string) {
-        commit(onHexChange(hex, precision));
+        setState(onHexChange(hex, precision));
     }
 
     function handleLightnessChange(lightness: number) {
-        handleHexChange(setLightness(value?.hex, lightness));
+        handleHexChange(setLightness(state?.hex, lightness));
     }
 
     function handleLuminanceChange(luminance: number) {
-        handleHexChange(setLuminance(value?.oklch, luminance));
+        handleHexChange(setLuminance(state?.oklch, luminance));
     }
 
     const presetOptions =
@@ -152,18 +180,18 @@ function Editor(props) {
             .map(([key, color]) => ({ value: color, label: key }))
             .filter((preset) => !!preset.value);
 
-    const lightness = value?.lightness || 0;
-    const luminance = value?.coords?.l || 0;
+    const lightness = state?.lightness || 0;
+    const luminance = state?.coords?.l || 0;
 
     return (
         <div {...stylex.props(styles.wrapper, disabled && styles.disabled)}>
             {Boolean(showPicker) && (
-                <HexColorPicker {...stylex.props(styles.colorPicker)} color={value?.hex} onChange={handleHexChange} />
+                <HexColorPicker {...stylex.props(styles.colorPicker)} color={state?.hex} onChange={handleHexChange} />
             )}
 
             {Boolean(showLightness) && (
                 <RangeSlider
-                    disabled={value?.hex ? false : true}
+                    disabled={state?.hex ? false : true}
                     value={lightness}
                     onChange={handleLightnessChange}
                     label={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:lightness")}
@@ -171,7 +199,7 @@ function Editor(props) {
             )}
             {Boolean(showLuminance) && (
                 <RangeSlider
-                    disabled={value?.coords?.l ? false : true}
+                    disabled={state?.coords?.l ? false : true}
                     value={luminance * 100}
                     onChange={handleLuminanceChange}
                     label={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:luminance")}
@@ -182,16 +210,16 @@ function Editor(props) {
                 <div
                     {...stylex.props(
                         styles.colorPreview,
-                        value?.oklch || styles.colorPreviewTransparent,
+                        state?.oklch || styles.colorPreviewTransparent,
                         highlight && styles.highlight,
                     )}
-                    style={{ backgroundColor: value?.oklch }}
+                    style={{ backgroundColor: state?.oklch }}
                 />
                 {Boolean(showHexInput) && (
                     <HexColorInput
                         {...stylex.props(styles.colorInput, styles.fontMono)}
                         title={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:setHexColor")}
-                        color={value?.hex}
+                        color={state?.hex}
                         onChange={handleHexChange}
                         prefixed={false}
                     />
@@ -201,14 +229,16 @@ function Editor(props) {
                         style="lighter"
                         icon="times"
                         title={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:resetColor")}
-                        onClick={onReset}
+                        onClick={() => {
+                            setState(null);
+                        }}
                     />
                 )}
             </div>
             {Boolean(!!presetOptions) && (
                 <SelectBox
                     options={presetOptions}
-                    value={value?.hex}
+                    value={state?.hex}
                     placeholder={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:preset")}
                     allowEmpty={false}
                     onValueChange={handleHexChange}

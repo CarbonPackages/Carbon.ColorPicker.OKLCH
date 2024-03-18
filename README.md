@@ -19,12 +19,13 @@ Then run `composer update` in your project root.
 
 ## How the value get stored
 
-The color picker don't store only the given value, it stores an array with following value:
+### Mode `all`
+
+If the `mode` ist set to `all` (which is the default), the color picker don't store only the given value, it stores an array with following values:
 
 - `hex`: The color in hex format
 - `oklch`: The color in the [`OKLCH`] color space
 - `coords`: The values in the [`OKLCH`] color space. This is great for any color transformation. Very handy if you use something like the [Tailwind OKLCH Plugin]
-- `lightness`: The lightness of the coosen color
 
 ```json
 {
@@ -34,10 +35,29 @@ The color picker don't store only the given value, it stores an array with follo
     "l": 0.64817,
     "c": 0.17545,
     "h": 131.68393
-  },
-  "lightness": 35
+  }
 }
 ```
+
+### Mode `coords`
+
+If the `mode` ist set to `coords`, the color picker stores the coordinates of the [`OKLCH`] color as array:
+
+```json
+{
+  "l": 0.64817,
+  "c": 0.17545,
+  "h": 131.68393
+}
+```
+
+### Mode `hex`
+
+If the `mode` ist set to `hex`, the color picker stores the hex color value: `#65a30d`
+
+### Mode `oklch`
+
+If the `mode` ist set to `oklch`, the color picker stores the [`OKLCH`] color as string: `oklch(64.817% 0.17545 131.68)`
 
 ## Settings
 
@@ -55,6 +75,22 @@ Foo.Bar:Your.Prototype:
           group: yourGroupName
 ```
 
+If you set mode to `hex` or `oklch` the type has to be `string`:
+
+```yaml
+Foo.Bar:Your.Prototype:
+  properties:
+    colorOKLCH:
+      type: string
+      ui:
+        label: OKLCH Color
+        inspector:
+          editor: "Carbon.ColorPicker/OKLCH"
+          group: yourGroupName
+          editorOptions:
+            mode: oklch
+```
+
 ### Customization
 
 The editor allows some global default options via your `Settings.yaml` file:
@@ -65,6 +101,8 @@ Neos:
     Ui:
       frontendConfiguration:
         Carbon.ColorPicker.OKLCH:
+          # Set the mode of the color picker. Possible values are: 'oklch', 'hex', 'coords', 'all'
+          mode: "all"
           # Disable the color picker
           disable: false
           # Allow empty values
@@ -82,7 +120,7 @@ Neos:
           # The precision of the OKLCH color picker. Set to 0 to disable rounding and use the raw values.
           precision: 5
           # The presets are based on https://tailwindcss.com/docs/customizing-colors with the key 600
-          # false and null values get filtered out
+          # false and null values get filtered out. You can also disable all presets with presets: false
           presets:
             slate: "#475569"
             gray: "#4b5563"
@@ -125,6 +163,9 @@ Foo.Bar:Your.Prototype:
             showLuminance: true
             disable: true
             allowEmpty: false
+            presets:
+              red: "#dc2626"
+              orange: "#ea580c"
 ```
 
 [screenshot]: https://github.com/CarbonPackages/Carbon.ColorPicker.OKLCH/assets/4510166/7cd440ac-ca24-459c-b71f-bfb896592cc8
