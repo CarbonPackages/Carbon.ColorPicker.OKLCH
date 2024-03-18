@@ -120,10 +120,11 @@ function getLightness(color: ColorConstructor) {
 
 function convertToOkLchCoords(oklch: PlainColorObject | ColorConstructor, precision = 5) {
     const { coords } = oklch;
+    const anglePrecision = precision > 3 ? precision - 3 : 0;
     return {
         l: round(coords[0], precision),
         c: round(coords[1], precision),
-        h: round(coords[2], precision),
+        h: round(coords[2], anglePrecision),
     };
 }
 
