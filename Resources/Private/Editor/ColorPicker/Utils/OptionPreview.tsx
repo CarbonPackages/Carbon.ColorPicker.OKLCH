@@ -34,7 +34,7 @@ const styles = stylex.create({
     },
 });
 
-export default function OptionWithPreview({
+export default function OptionPreview({
     option,
     onClick,
     isHighlighted,
