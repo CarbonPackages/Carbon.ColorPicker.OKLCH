@@ -1,4 +1,4 @@
-.PHONY: help install watch dev production build prettier prettier-watch
+.PHONY: help install watch production build prettier prettier-watch
 
 .DEFAULT_GOAL := production
 
@@ -10,22 +10,18 @@ prettier:
 prettier-watch:
 	@pnpm onchange '**/*.{yaml,ts,tsx,mjs,js,md}' -- pnpm prettier --write --ignore-unknown {{changed}}
 
-## Install dependencies and build production version
+## Install dependencies and build editor
 production: install prettier build
 
 ## Install dependencies
 install:
 	@pnpm install
 
-## Watch for changes and build development version on change
+## Watch for changes and re-build on change
 watch:
 	@pnpm watch
 
-## Build development version
-dev:
-	@pnpm dev
-
-## Build production version
+## Build editor
 build:
 	@pnpm build
 

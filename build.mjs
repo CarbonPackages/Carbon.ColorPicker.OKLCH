@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const options = {
     logLevel: "info",
     bundle: true,
-    minify: process.argv.includes("--production"),
+    minify: true,
     sourcemap: true,
     target: "es2020",
     format: "iife",

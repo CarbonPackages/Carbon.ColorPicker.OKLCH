@@ -3,9 +3,8 @@
   "license": "proprietary",
   "private": true,
   "scripts": {
-    "build": "node build.mjs --production",
-    "watch": "node build.mjs --watch",
-    "dev": "node build.mjs"
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch"
   },
   "devDependencies": {
     "@neos-project/neos-ui-extensibility": "~8.3.6",
