@@ -51,7 +51,16 @@ export function setStateFromValue(
 
     if (mode === "all") {
         // @ts-ignore
-        return value?.hex ? value : {};
+        const hex = value?.hex;
+        // @ts-ignore
+        if (!hex) {
+            return {};
+        }
+
+        const color = parseColor(hex);
+        const lightness = getLightness(color);
+        // @ts-ignore
+        return { ...value, lightness };
     }
 
     if (mode === "coords") {
