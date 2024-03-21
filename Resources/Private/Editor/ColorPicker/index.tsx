@@ -122,7 +122,7 @@ const styles = stylex.create({
 // @ts-ignore
 function Editor(props) {
     const options = { ...defaultProps.options, ...props.config, ...props.options };
-    const { value, commit, highlight, i18nRegistry } = props;
+    const { value, commit, highlight, i18nRegistry, id } = props;
     const {
         allowEmpty,
         disabled,
@@ -216,6 +216,7 @@ function Editor(props) {
                     value={lightness}
                     onChange={handleLightnessChange}
                     label={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:lightness")}
+                    id={`${id}-lightness`}
                 />
             )}
             {Boolean(showLuminance) && (
@@ -224,6 +225,7 @@ function Editor(props) {
                     value={luminance * 100}
                     onChange={handleLuminanceChange}
                     label={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:luminance")}
+                    id={`${id}-luminance`}
                 />
             )}
 
@@ -243,6 +245,7 @@ function Editor(props) {
                         color={state?.hex}
                         onChange={handleHexChange}
                         prefixed={false}
+                        id={id}
                     />
                 )}
                 {Boolean(allowEmpty) && (

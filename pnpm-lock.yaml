@@ -29,9 +29,6 @@ devDependencies:
   eslint:
     specifier: ^8.57.0
     version: 8.57.0
-  nanoid:
-    specifier: ^5.0.6
-    version: 5.0.6
   onchange:
     specifier: ^7.1.0
     version: 7.1.0
@@ -1781,12 +1778,6 @@ packages:
 
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
-    dev: true
-
-  /nanoid@5.0.6:
-    resolution: {integrity: sha512-rRq0eMHoGZxlvaFOUdK1Ev83Bd1IgzzR+WJ3IbDJ7QOSdAxYjlurSPqFs9s4lJg29RT6nPwizFtJhQS6V5xgiA==}
-    engines: {node: ^18 || >=20}
-    hasBin: true
     dev: true
 
   /natural-compare@1.4.0:

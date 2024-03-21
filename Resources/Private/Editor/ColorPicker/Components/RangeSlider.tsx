@@ -1,6 +1,5 @@
 // @ts-ignore
 import React, { useEffect, useState } from "react";
-import { nanoid } from "nanoid";
 import * as stylex from "@stylexjs/stylex";
 import { colors, sizes, fonts, transitions } from "../Tokens.stylex";
 
@@ -117,15 +116,16 @@ export default function RangeSlider({
     onChange,
     label,
     disabled,
+    id,
 }: {
     value: number;
     onChange: Function;
     label: string;
     input?: Boolean;
     disabled?: Boolean;
+    id: string;
 }) {
     const [number, setNumber] = useState(value || 0);
-    const id = "range-" + nanoid();
     const min = 0;
     const max = 100;
 
