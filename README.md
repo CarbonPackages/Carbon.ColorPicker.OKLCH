@@ -2,7 +2,11 @@
 
 # Carbon.ColorPicker.OKLCH
 
-Color picker for Neos CMS who saves the color in the [`OKLCH`] color space
+Color picker for Neos CMS who saves the color in the [`OKLCH`] color space.
+
+There are many options on how the picker should look like:
+
+Here you can see some of the combinations:
 
 ![screenshot]
 
@@ -117,6 +121,8 @@ Neos:
           showLightness: false
           # Show slider to set the luminance
           showLuminance: false
+          # Collapse the color picker (enables only when showPicker is true)
+          collapsed: false
           # The precision of the OKLCH color picker. Set to 0 to disable rounding and use the raw values.
           precision: 5
           # The presets are based on https://tailwindcss.com/docs/customizing-colors with the key 600
@@ -163,12 +169,13 @@ Foo.Bar:Your.Prototype:
             showLuminance: true
             disable: true
             allowEmpty: false
+            collapsed: true
             presets:
               red: "#dc2626"
               orange: "#ea580c"
 ```
 
-[screenshot]: https://github.com/CarbonPackages/Carbon.ColorPicker.OKLCH/assets/4510166/7cd440ac-ca24-459c-b71f-bfb896592cc8
+[screenshot]: https://github.com/CarbonPackages/Carbon.ColorPicker.OKLCH/assets/4510166/320c14e8-f961-49ac-8959-38d2c43b3a81
 [tailwind oklch plugin]: https://github.com/MartijnCuppens/tailwindcss-oklch
 [`oklch`]: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch
 [packagist]: https://packagist.org/packages/carbon/colorpicker-oklch

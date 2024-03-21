@@ -25,6 +25,12 @@
             <trans-unit id="invalidMode" xml:space="preserve">
                 <source>Invalid mode "{0}" provided. Valid modes are "coords", "hex", "oklch" or "all".</source>
             </trans-unit>
+            <trans-unit id="openPanel" xml:space="preserve">
+                <source>Open panel to choose color</source>
+            </trans-unit>
+            <trans-unit id="closePanel" xml:space="preserve">
+                <source>Close panel</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

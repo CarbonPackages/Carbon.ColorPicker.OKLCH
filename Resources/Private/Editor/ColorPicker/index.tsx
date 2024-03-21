@@ -1,11 +1,10 @@
 // @ts-ignore
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, MouseEvent } from "react";
 import { neos } from "@neos-project/neos-ui-decorators";
-import { HexColorPicker, HexColorInput } from "react-colorful";
-import { onHexChange, setLuminance, setLightness, setStateFromValue, OptionPreview, RangeSlider } from "./Components";
-import { IconButton, SelectBox } from "@neos-project/react-ui-components";
+import Panel, { setStateFromValue } from "./Components";
+import { Icon, IconButton } from "@neos-project/react-ui-components";
 import * as stylex from "@stylexjs/stylex";
-import { colors, sizes, fonts, transitions } from "./Tokens.stylex";
+import { colors, sizes, transitions } from "./Tokens.stylex";
 
 const neosifier = neos((globalRegistry) => ({
     i18nRegistry: globalRegistry.get("i18n"),
@@ -49,73 +48,45 @@ const styles = stylex.create({
         flexDirection: "column",
         gap: sizes.spacingHalf,
     },
-    fontMono: {
-        fontFamily: fonts.mono,
-    },
-    elementRow: {
+    popoverButton: {
         display: "flex",
-        gap: sizes.spacingHalf,
-    },
-    colorPreview: {
+        alignItems: "center",
+        justifyContent: "stretch",
+        border: "none",
+        padding: 0,
+        minHeight: sizes.goldenUnit,
         borderRadius: sizes.borderRadius,
-        height: sizes.goldenUnit,
-        minWidth: sizes.goldenUnit,
-        flexBasis: sizes.goldenUnit,
+        cursor: "pointer",
+        background: "none",
+        backgroundColor: colors.contrastNeutral,
+    },
+    popoverButtonPreview: (color) => ({
         flex: 1,
+        minHeight: sizes.goldenUnit,
+        borderTopLeftRadius: sizes.borderRadius,
+        borderBottomLeftRadius: sizes.borderRadius,
+        backgroundColor: color || null,
+        backgroundSize: color ? null : "16px 16px",
+        backgroundImage: color ? null : colors.checkerboard,
+    }),
+    popoverButtonIcon: (open) => ({
+        transform: open ? "rotate(180deg)" : "rotate(0deg)",
+        transition: `transform ${transitions.default} ${transitions.timing}`,
+        minWidth: sizes.goldenUnit,
+    }),
+    popoverPanel: (open) => ({
+        display: "grid",
+        gridTemplateRows: open ? "1fr" : "0fr",
+        opacity: open ? 1 : 0,
+        transition: `grid-template-rows ${transitions.default} ${transitions.timing}, opacity ${transitions.fast} ${transitions.timing} ${open ? transitions.fast : "0s"}`,
+    }),
+    popoverContent: {
+        overflow: "hidden",
+        marginInline: -16,
+        paddingInline: 16,
     },
-    colorPreviewTransparent: {
-        backgroundSize: "16px 16px",
-        backgroundColor: colors.contrastNeutral,
-        backgroundImage: `url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="2" height="2" fill-opacity=".25"><rect x="1" width="1" height="1" /><rect y="1" width="1" height="1" /></svg>')`,
-    },
-    colorInput: {
-        flexGrow: 1,
-        height: sizes.goldenUnit,
-        width: "100%",
-        borderRadius: sizes.borderRadius,
-        border: 0,
-        backgroundColor: colors.contrastNeutral,
-        paddingInline: sizes.spacingFull,
-        color: "white",
-        outline: "none",
-        ":focus": {
-            color: "black",
-            backgroundColor: "white",
-        },
-    },
-    colorPicker: {
-        width: "100%",
-        height: "auto",
-        aspectRatio: 1,
-        marginTop: sizes.spacingHalf,
-        // :where(*) is a hack to select classes inside the component
-        ":where(*) > :first-child": {
-            borderTopLeftRadius: sizes.borderRadius,
-            borderTopRightRadius: sizes.borderRadius,
-        },
-        ":where(*) > :last-child": {
-            borderBottomLeftRadius: sizes.borderRadius,
-            borderBottomRightRadius: sizes.borderRadius,
-        },
-        ":where(*) .react-colorful__pointer": {
-            height: 20,
-            width: 20,
-            backgroundColor: colors.primaryBlue,
-            borderColor: colors.primaryBlue,
-            transitionProperty: "transform, background-color, border-color",
-            transitionTimingFunction: transitions.timing,
-            transitionDuration: transitions.default,
-            transition: `transform ${transitions.default} ${transitions.timing}`,
-        },
-        ":where(*) .react-colorful__pointer:hover": {
-            backgroundColor: colors.primaryBlueHover,
-            borderColor: colors.primaryBlueHover,
-            cursor: "grab",
-        },
-        ":where(*) .react-colorful__pointer:active": {
-            transform: "translate(-50%,-50%) scale(1.5)",
-            cursor: "grabbing",
-        },
+    noGap: {
+        gap: 0,
     },
 });
 
@@ -123,18 +94,7 @@ const styles = stylex.create({
 function Editor(props) {
     const options = { ...defaultProps.options, ...props.config, ...props.options };
     const { value, commit, highlight, i18nRegistry, id } = props;
-    const {
-        allowEmpty,
-        disabled,
-        mode,
-        precision,
-        presets,
-        showHexInput,
-        showLightness,
-        showLuminance,
-        showPicker,
-        showPresets,
-    } = options;
+    const { disabled, mode, collapsed, allowEmpty, precision } = options;
     if (mode !== "coords" && mode !== "hex" && mode !== "all" && mode !== "oklch") {
         return (
             <div {...stylex.props(styles.error)}>
@@ -143,6 +103,7 @@ function Editor(props) {
         );
     }
 
+    const [open, setOpen] = useState(false);
     const [state, setState] = useState(setStateFromValue(value, mode, precision));
 
     useEffect(() => {
@@ -182,91 +143,57 @@ function Editor(props) {
         }
     }, [state]);
 
-    function handleHexChange(hex: string) {
-        setState(onHexChange(hex, precision));
-    }
-
-    function handleLightnessChange(lightness: number) {
-        handleHexChange(setLightness(state?.hex, lightness));
-    }
-
-    function handleLuminanceChange(luminance: number) {
-        handleHexChange(setLuminance(state?.oklch, luminance));
-    }
-
-    const presetOptions =
-        showPresets &&
-        presets &&
-        Object.entries(presets)
-            .map(([key, color]) => ({ value: color, label: key }))
-            .filter((preset) => !!preset.value);
-
-    const lightness = state?.lightness || 0;
-    const luminance = state?.coords?.l || 0;
+    const enableCollapsed = collapsed && options.showPicker;
 
     return (
-        <div {...stylex.props(styles.wrapper, disabled && styles.disabled)}>
-            {Boolean(showPicker) && (
-                <HexColorPicker {...stylex.props(styles.colorPicker)} color={state?.hex} onChange={handleHexChange} />
-            )}
-
-            {Boolean(showLightness) && (
-                <RangeSlider
-                    disabled={state?.hex ? false : true}
-                    value={lightness}
-                    onChange={handleLightnessChange}
-                    label={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:lightness")}
-                    id={`${id}-lightness`}
-                />
-            )}
-            {Boolean(showLuminance) && (
-                <RangeSlider
-                    disabled={state?.coords?.l ? false : true}
-                    value={luminance * 100}
-                    onChange={handleLuminanceChange}
-                    label={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:luminance")}
-                    id={`${id}-luminance`}
-                />
-            )}
-
-            <div {...stylex.props(styles.elementRow)}>
-                <div
-                    {...stylex.props(
-                        styles.colorPreview,
-                        state?.oklch || styles.colorPreviewTransparent,
-                        highlight && styles.highlight,
-                    )}
-                    style={{ backgroundColor: state?.oklch }}
-                />
-                {Boolean(showHexInput) && (
-                    <HexColorInput
-                        {...stylex.props(styles.colorInput, styles.fontMono)}
-                        title={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:setHexColor")}
-                        color={state?.hex}
-                        onChange={handleHexChange}
-                        prefixed={false}
-                        id={id}
-                    />
-                )}
-                {Boolean(allowEmpty) && (
-                    <IconButton
-                        style="lighter"
-                        icon="times"
-                        title={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:resetColor")}
-                        onClick={() => {
-                            setState(null);
-                        }}
-                    />
-                )}
-            </div>
-            {Boolean(!!presetOptions) && (
-                <SelectBox
-                    options={presetOptions}
-                    value={state?.hex}
-                    placeholder={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:preset")}
-                    allowEmpty={false}
-                    onValueChange={handleHexChange}
-                    ListPreviewElement={OptionPreview}
+        <div {...stylex.props(styles.wrapper, disabled && styles.disabled, enableCollapsed && styles.noGap)}>
+            {Boolean(enableCollapsed) ? (
+                <>
+                    <button
+                        {...stylex.props(styles.popoverButton, highlight && styles.highlight)}
+                        type="button"
+                        title={i18nRegistry.translate(`Carbon.ColorPicker.OKLCH:Main:${open ? "close" : "open"}Panel`)}
+                        onClick={() => setOpen(!open)}
+                        aria-expanded={open}
+                        aria-controls={`${id}-panel`}
+                    >
+                        <span {...stylex.props(styles.popoverButtonPreview(state?.oklch))} />
+                        {Boolean(allowEmpty) && Boolean(state?.oklch) && (
+                            <IconButton
+                                style="light"
+                                icon="times"
+                                title={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:resetColor")}
+                                onClick={(event: MouseEvent<HTMLButtonElement>) => {
+                                    event.stopPropagation();
+                                    setState(null);
+                                }}
+                            />
+                        )}
+                        <Icon icon="chevron-down" {...stylex.props(styles.popoverButtonIcon(open))} />
+                    </button>
+                    <div {...stylex.props(styles.popoverPanel(open))} aria-hidden={!open} id={`${id}-panel`}>
+                        <div {...stylex.props(styles.wrapper, styles.popoverContent)}>
+                            <Panel
+                                {...options}
+                                state={state}
+                                setState={setState}
+                                i18nRegistry={i18nRegistry}
+                                id={id}
+                                onFocus={() => setOpen(true)}
+                                collapsed={true}
+                            />
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <Panel
+                    {...options}
+                    state={state}
+                    setState={setState}
+                    highlight={highlight}
+                    i18nRegistry={i18nRegistry}
+                    id={id}
+                    collapsed={false}
                 />
             )}
         </div>

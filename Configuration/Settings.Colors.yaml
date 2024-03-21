@@ -17,6 +17,8 @@ Neos:
           showLuminance: false
           # The precision of the OKLCH color picker. Set to 0 to disable rounding and use the raw values.
           precision: 5
+          # Collapse the color picker (enables only when showPicker is true)
+          collapsed: false
           # The presets are based on https://tailwindcss.com/docs/customizing-colors with the key 600
           # false and null values get filtered out
           presets:

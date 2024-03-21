@@ -32,6 +32,14 @@
                 <source>Invalid mode "{0}" provided. Valid modes are "coords", "hex", "oklch" or "all".</source>
                 <target>Ungültiger Modus "{0}" angegeben. Gültige Modi sind "coords", "hex", "oklch" oder "all".</target>
             </trans-unit>
+            <trans-unit id="openPanel" xml:space="preserve">
+                <source>Open panel to choose color</source>
+                <target>Panel zur Farbauswahl öffnen</target>
+            </trans-unit>
+            <trans-unit id="closePanel" xml:space="preserve">
+                <source>Close panel</source>
+                <target>Panel schließen</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

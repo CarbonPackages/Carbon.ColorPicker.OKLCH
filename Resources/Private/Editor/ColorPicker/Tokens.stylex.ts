@@ -6,6 +6,7 @@ export const colors = stylex.defineVars({
     contrastNeutral: "var(--colors-ContrastNeutral)",
     warn: "var(--colors-Warn)",
     error: "var(--colors-Error)",
+    checkerboard: `url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="2" height="2" fill-opacity=".25"><rect x="1" width="1" height="1" /><rect y="1" width="1" height="1" /></svg>')`,
 });
 
 export const sizes = stylex.defineVars({
