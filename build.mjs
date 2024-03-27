@@ -13,9 +13,13 @@ const options = {
     minify: true,
     sourcemap: true,
     target: "es2020",
-    format: "iife",
+    format: "esm",
+    splitting: true,
     legalComments: "none",
-    entryPoints: { Plugin: "Resources/Private/Editor/manifest.ts" },
+    entryPoints: {
+        Plugin: "Resources/Private/Editor/manifest.ts",
+        ColorName: "Resources/Private/Editor/ColorPicker/ColorName.tsx",
+    },
     loader: {
         ".js": "tsx",
     },

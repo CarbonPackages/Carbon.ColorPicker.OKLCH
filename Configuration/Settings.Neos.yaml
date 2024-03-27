@@ -5,6 +5,8 @@ Neos:
         javascript:
           Carbon.ColorPicker.OKLCH:
             resource: resource://Carbon.ColorPicker.OKLCH/Public/Plugin.js
+            attributes:
+              type: 'module'
         stylesheets:
           Carbon.ColorPicker.OKLCH:
             resource: resource://Carbon.ColorPicker.OKLCH/Public/Plugin.css

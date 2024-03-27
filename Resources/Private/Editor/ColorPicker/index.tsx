@@ -1,15 +1,18 @@
 // @ts-ignore
-import React, { useState, useEffect, MouseEvent } from "react";
+import React, { useState, useEffect, MouseEvent, lazy, Suspense } from "react";
 import { neos } from "@neos-project/neos-ui-decorators";
 import Panel, { setStateFromValue } from "./Components";
 import { Icon, IconButton } from "@neos-project/react-ui-components";
 import * as stylex from "@stylexjs/stylex";
 import { colors, sizes, transitions } from "./Tokens.stylex";
+import HexOutput from "./Components/HexOutput";
 
 const neosifier = neos((globalRegistry) => ({
     i18nRegistry: globalRegistry.get("i18n"),
     config: globalRegistry.get("frontendConfiguration").get("Carbon.ColorPicker.OKLCH"),
 }));
+
+const ColorName = lazy(() => import("./ColorName.js"));
 
 const defaultProps = {
     options: {
@@ -60,14 +63,21 @@ const styles = stylex.create({
         background: "none",
         backgroundColor: colors.contrastNeutral,
     },
-    popoverButtonPreview: (color) => ({
+    popoverButtonPreview: (color, luminance) => ({
         flex: 1,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
         minHeight: sizes.goldenUnit,
         borderTopLeftRadius: sizes.borderRadius,
         borderBottomLeftRadius: sizes.borderRadius,
+        color: luminance > 0.6 ? "black" : "white",
         backgroundColor: color || null,
         backgroundSize: color ? null : "16px 16px",
         backgroundImage: color ? null : colors.checkerboard,
+        paddingInline: sizes.spacingFull,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
     }),
     popoverButtonIcon: (open) => ({
         transform: open ? "rotate(180deg)" : "rotate(0deg)",
@@ -157,7 +167,11 @@ function Editor(props) {
                         aria-expanded={open}
                         aria-controls={`${id}-panel`}
                     >
-                        <span {...stylex.props(styles.popoverButtonPreview(state?.oklch))} />
+                        <output {...stylex.props(styles.popoverButtonPreview(state?.oklch, state?.coords?.l || 0))}>
+                            <Suspense fallback={<HexOutput hex={state?.hex} />}>
+                                <ColorName hex={state?.hex} />
+                            </Suspense>
+                        </output>
                         {Boolean(allowEmpty) && Boolean(state?.oklch) && (
                             <IconButton
                                 style="light"

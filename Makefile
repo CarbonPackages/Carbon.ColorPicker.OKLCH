@@ -13,16 +13,21 @@ prettier-watch:
 ## Install dependencies and build editor
 production: install prettier build
 
+clean:
+	@rm -rf Resources/Public
+
 ## Install dependencies
 install:
 	@pnpm install
 
 ## Watch for changes and re-build on change
 watch:
+	make clean
 	@pnpm watch
 
 ## Build editor
 build:
+	make clean
 	@pnpm build
 
 # Define colors

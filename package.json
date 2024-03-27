@@ -12,9 +12,12 @@
     "@stylexjs/esbuild-plugin": "^0.5.1",
     "@stylexjs/eslint-plugin": "^0.5.1",
     "@stylexjs/stylex": "^0.5.1",
+    "@types/nearest-color": "^0.4.1",
+    "color-name-list": "^10.20.2",
     "colorjs.io": "^0.5.0",
     "esbuild": "^0.20.2",
     "eslint": "^8.57.0",
+    "nearest-color": "^0.4.4",
     "onchange": "^7.1.0",
     "prettier": "^3.2.5",
     "react-colorful": "^5.6.1"

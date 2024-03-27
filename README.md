@@ -175,7 +175,7 @@ Foo.Bar:Your.Prototype:
               orange: "#ea580c"
 ```
 
-[screenshot]: https://github.com/CarbonPackages/Carbon.ColorPicker.OKLCH/assets/4510166/320c14e8-f961-49ac-8959-38d2c43b3a81
+[screenshot]: https://github.com/CarbonPackages/Carbon.ColorPicker.OKLCH/assets/4510166/b604eb5a-cce6-4fb2-829d-d0c091be9758
 [tailwind oklch plugin]: https://github.com/MartijnCuppens/tailwindcss-oklch
 [`oklch`]: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch
 [packagist]: https://packagist.org/packages/carbon/colorpicker-oklch

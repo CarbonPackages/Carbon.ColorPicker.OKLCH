@@ -1,3 +1,5 @@
+declare module "color-name-list/dist/colornames.esm.mjs";
+
 declare module "@neos-project/neos-ui-backend-connector" {
     type MakeFetchRequest = (csrf: string) => RequestInit & { url?: string };
 
