@@ -39,6 +39,7 @@ const options = {
     ],
 };
 
+// eslint-disable-next-line no-undef
 if (process.argv.includes("--watch")) {
     esbuild.context(options).then((ctx) => ctx.watch());
 } else {

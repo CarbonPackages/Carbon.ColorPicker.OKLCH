@@ -1,5 +1,5 @@
 // @ts-ignore
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import { onHexChange, setLuminance, setLightness, OptionPreview, RangeSlider } from "./index";
 import { IconButton, SelectBox } from "@neos-project/react-ui-components";
@@ -165,7 +165,7 @@ export default function Panel({
                 />
             )}
 
-            {(Boolean(collapsed) ? Boolean(showHexInput) : true) && (
+            {(collapsed ? Boolean(showHexInput) : true) && (
                 <div {...stylex.props(styles.elementRow)}>
                     {Boolean(collapsed) || (
                         <div {...stylex.props(styles.colorPreview(state?.oklch), highlight && styles.highlight)} />
@@ -183,7 +183,7 @@ export default function Panel({
                         />
                     )}
 
-                    {!Boolean(collapsed) && Boolean(allowEmpty) && (
+                    {!collapsed && Boolean(allowEmpty) && (
                         <IconButton
                             style="light"
                             icon="times"
@@ -196,7 +196,7 @@ export default function Panel({
                 </div>
             )}
 
-            {Boolean(!!presetOptions) && (
+            {Boolean(presetOptions) && (
                 <SelectBox
                     options={presetOptions}
                     value={state?.hex}

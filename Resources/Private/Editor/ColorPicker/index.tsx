@@ -55,7 +55,7 @@ const styles = stylex.create({
         display: "flex",
         alignItems: "center",
         justifyContent: "stretch",
-        border: "none",
+        borderWidth: 0,
         padding: 0,
         minHeight: sizes.goldenUnit,
         borderRadius: sizes.borderRadius,
@@ -64,7 +64,7 @@ const styles = stylex.create({
         backgroundColor: colors.contrastNeutral,
     },
     popoverButtonPreview: (color, luminance) => ({
-        flex: 1,
+        flex: "1",
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
@@ -157,7 +157,7 @@ function Editor(props) {
 
     return (
         <div {...stylex.props(styles.wrapper, disabled && styles.disabled, enableCollapsed && styles.noGap)}>
-            {Boolean(enableCollapsed) ? (
+            {enableCollapsed ? (
                 <>
                     <button
                         {...stylex.props(styles.popoverButton, highlight && styles.highlight)}
