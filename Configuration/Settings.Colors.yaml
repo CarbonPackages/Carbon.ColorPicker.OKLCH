@@ -19,6 +19,8 @@ Neos:
           precision: 5
           # Collapse the color picker (enables only when showPicker is true)
           collapsed: false
+          # The name of the custom property. Only used when mode is set to 'all'
+          customPropertyName: 'color'
           # The presets are based on https://tailwindcss.com/docs/customizing-colors with the key 500
           # false and null values get filtered out
           presets:

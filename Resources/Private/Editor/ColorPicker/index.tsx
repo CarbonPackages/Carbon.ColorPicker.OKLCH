@@ -14,19 +14,18 @@ const neosifier = neos((globalRegistry) => ({
 
 const ColorName = lazy(() => import("./ColorName.js"));
 
-const defaultProps = {
-    options: {
-        mode: "all",
-        disabled: false,
-        allowEmpty: true,
-        showPresets: true,
-        showPicker: true,
-        showHexInput: true,
-        showLightness: false,
-        showLuminance: false,
-        precision: 5,
-        presets: {},
-    },
+const defaultOptions = {
+    mode: "all",
+    customPropertyName: "color",
+    disabled: false,
+    allowEmpty: true,
+    showPresets: true,
+    showPicker: true,
+    showHexInput: true,
+    showLightness: false,
+    showLuminance: false,
+    precision: 5,
+    presets: {},
 };
 
 const styles = stylex.create({
@@ -102,7 +101,7 @@ const styles = stylex.create({
 
 // @ts-ignore
 function Editor(props) {
-    const options = { ...defaultProps.options, ...props.config, ...props.options };
+    const options = { ...defaultOptions, ...props.config, ...props.options };
     const { value, commit, highlight, i18nRegistry, id } = props;
     const { disabled, mode, collapsed, allowEmpty, precision } = options;
     if (mode !== "coords" && mode !== "hex" && mode !== "all" && mode !== "oklch") {
@@ -136,7 +135,14 @@ function Editor(props) {
 
         if (mode === "all") {
             if (value.oklch != state.oklch) {
-                commit({ hex: state.hex, oklch: state.oklch, coords: state.coords });
+                // create custom properties
+                const customProperty = {
+                    coords: `--${options.customPropertyName}-l:${state.coords.l};--${options.customPropertyName}-c:${state.coords.c};--${options.customPropertyName}-h:${state.coords.h};`,
+                    oklch: `--${options.customPropertyName}:${state.oklch};`,
+                    hex: `--${options.customPropertyName}:${state.hex};`,
+                };
+
+                commit({ hex: state.hex, oklch: state.oklch, coords: state.coords, customProperty });
             }
             return;
         }

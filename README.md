@@ -30,6 +30,7 @@ If the `mode` ist set to `all` (which is the default), the color picker don't st
 - `hex`: The color in hex format
 - `oklch`: The color in the [`OKLCH`] color space
 - `coords`: The values in the [`OKLCH`] color space. This is great for any color transformation. Very handy if you use something like the [Tailwind OKLCH Plugin]
+- `customProperty`: Ready to use custom properties for your CSS. You can set the name via the option `customPropertyName`, defaults to `color`
 
 ```json
 {
@@ -39,6 +40,11 @@ If the `mode` ist set to `all` (which is the default), the color picker don't st
     "l": 0.64817,
     "c": 0.17545,
     "h": 131.68393
+  },
+  "customProperty": {
+    "coords": "--color-l:0.64817;--color-c:0.17545;--color-h:131.68;",
+    "oklch": "--color:oklch(64.817% 0.17545 131.68);",
+    "hex": "--color:#65a30d;"
   }
 }
 ```
@@ -123,6 +129,8 @@ Neos:
           showLuminance: false
           # Collapse the color picker (enables only when showPicker is true)
           collapsed: false
+          # The name of the custom property. Only used when mode is set to 'all'
+          customPropertyName: "color"
           # The precision of the OKLCH color picker. Set to 0 to disable rounding and use the raw values.
           precision: 5
           # The presets are based on https://tailwindcss.com/docs/customizing-colors with the key 600
@@ -170,6 +178,7 @@ Foo.Bar:Your.Prototype:
             disable: true
             allowEmpty: false
             collapsed: true
+            customPropertyName: "color-main"
             presets:
               red: "#dc2626"
               orange: "#ea580c"
