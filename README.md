@@ -192,8 +192,8 @@ Foo.Bar:Your.Prototype:
 Converts a `HEX` color to the object who is used when you set the mode to `all`.
 
 - `color` (string|array, required) The color
-- `precision` (int) The precision for the color, defaults to 5
-- `customPropertyName` (string) The name for the ready to use custom property, defaults to `color`
+- `precision` (int) The precision for the color, defaults to `5`
+- `customPropertyName` (string) The name for the ready to use custom property, defaults to `'color'`
 
 Example:
 
