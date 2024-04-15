@@ -1,4 +1,7 @@
 Neos:
+  Fusion:
+    defaultContext:
+      ColorConvert: 'Carbon\ColorPicker\OKLCH\EelHelper\ConvertHelper'
   Neos:
     Ui:
       resources:

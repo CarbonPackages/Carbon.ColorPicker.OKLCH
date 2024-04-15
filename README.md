@@ -2,7 +2,8 @@
 
 # Carbon.ColorPicker.OKLCH
 
-Color picker for Neos CMS who saves the color in the [`OKLCH`] color space.
+Color picker for Neos CMS who saves the color in the [`OKLCH`] color space. It also provide an eel helper to convert
+`HEX` colors to `OKLCH`.
 
 There are many options on how the picker should look like:
 
@@ -39,7 +40,7 @@ If the `mode` ist set to `all` (which is the default), the color picker don't st
   "coords": {
     "l": 0.64817,
     "c": 0.17545,
-    "h": 131.68393
+    "h": 131.68
   },
   "customProperty": {
     "coords": "--color-l:0.64817;--color-c:0.17545;--color-h:131.68;",
@@ -182,6 +183,41 @@ Foo.Bar:Your.Prototype:
             presets:
               red: "#dc2626"
               orange: "#ea580c"
+```
+
+## Eel helper
+
+### `ColorConvert.toOkLch(color, precision, customPropertyName)`
+
+Converts a `HEX` color to the object who is used when you set the mode to `all`.
+
+- `color` (string|array, required) The color
+- `precision` (int) The precision for the color, defaults to 5
+- `customPropertyName` (string) The name for the ready to use custom property, defaults to `color`
+
+Example:
+
+```elm
+${ColorConvert.toOkLch('#65a30d', 4, 'color-main')}
+```
+
+returns
+
+```json
+{
+  "hex": "#65a30d",
+  "oklch": "oklch(64.82% 0.1755 131.7)",
+  "coords": {
+    "l": 0.6482,
+    "c": 0.1755,
+    "h": 131.7
+  },
+  "customProperty": {
+    "coords": "--color-main-l:0.6482;--color-main-c:0.1755;--color-main-h:131.7;",
+    "oklch": "--color-main:oklch(64.82% 0.1755 131.7);",
+    "hex": "--color-main:#65a30d;"
+  }
+}
 ```
 
 [screenshot]: https://github.com/CarbonPackages/Carbon.ColorPicker.OKLCH/assets/4510166/b604eb5a-cce6-4fb2-829d-d0c091be9758
