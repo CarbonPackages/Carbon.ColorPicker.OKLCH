@@ -10,7 +10,7 @@ devDependencies:
     version: 8.3.7
   '@neos-project/react-ui-components':
     specifier: ^8.3.7
-    version: 8.3.7(@fortawesome/free-brands-svg-icons@5.15.4)(@fortawesome/free-regular-svg-icons@5.15.4)(@fortawesome/free-solid-svg-icons@5.15.4)(@friendsofreactjs/react-css-themr@4.2.1)(notosans-fontface@1.3.0)(prop-types@15.8.1)(react-dom@16.14.0)(react@16.14.0)
+    version: 8.3.7(@fortawesome/free-brands-svg-icons@6.5.2)(@fortawesome/free-regular-svg-icons@6.5.2)(@fortawesome/free-solid-svg-icons@6.5.2)(@friendsofreactjs/react-css-themr@4.3.3)(notosans-fontface@1.3.0)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
   '@stylexjs/esbuild-plugin':
     specifier: ^0.5.1
     version: 0.5.1
@@ -21,8 +21,8 @@ devDependencies:
     specifier: ^0.4.1
     version: 0.4.1
   color-name-list:
-    specifier: ^10.20.2
-    version: 10.20.2
+    specifier: ^10.21.0
+    version: 10.21.0
   colorjs.io:
     specifier: ^0.5.0
     version: 0.5.0
@@ -43,7 +43,7 @@ devDependencies:
     version: 3.2.5
   react-colorful:
     specifier: ^5.6.1
-    version: 5.6.1(react-dom@16.14.0)(react@16.14.0)
+    version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
   typescript-eslint:
     specifier: ^7.6.0
     version: 7.6.0(eslint@9.0.0)(typescript@5.4.5)
@@ -761,6 +761,12 @@ packages:
     requiresBuild: true
     dev: true
 
+  /@fortawesome/fontawesome-common-types@6.5.2:
+    resolution: {integrity: sha512-gBxPg3aVO6J0kpfHNILc+NMhXnqHumFxOmjYCFfOiLZfwhnnfhtsdA2hfJlDnj+8PjAs6kKQPenOTKj3Rf7zHw==, tarball: https://npm.fontawesome.com/@fortawesome/fontawesome-common-types/-/6.5.2/fontawesome-common-types-6.5.2.tgz}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dev: true
+
   /@fortawesome/fontawesome-svg-core@1.2.36:
     resolution: {integrity: sha512-YUcsLQKYb6DmaJjIHdDWpBIGCcyE/W+p/LMGvjQem55Mm2XWVAP5kWTMKWLv9lwpCVjpLxPyOMOyUocP1GxrtA==, tarball: https://npm.fontawesome.com/@fortawesome/fontawesome-svg-core/-/1.2.36/fontawesome-svg-core-1.2.36.tgz}
     engines: {node: '>=6'}
@@ -769,31 +775,31 @@ packages:
       '@fortawesome/fontawesome-common-types': 0.2.36
     dev: true
 
-  /@fortawesome/free-brands-svg-icons@5.15.4:
-    resolution: {integrity: sha512-f1witbwycL9cTENJegcmcZRYyawAFbm8+c6IirLmwbbpqz46wyjbQYLuxOc7weXFXfB7QR8/Vd2u5R3q6JYD9g==, tarball: https://npm.fontawesome.com/@fortawesome/free-brands-svg-icons/-/5.15.4/free-brands-svg-icons-5.15.4.tgz}
+  /@fortawesome/free-brands-svg-icons@6.5.2:
+    resolution: {integrity: sha512-zi5FNYdmKLnEc0jc0uuHH17kz/hfYTg4Uei0wMGzcoCL/4d3WM3u1VMc0iGGa31HuhV5i7ZK8ZlTCQrHqRHSGQ==, tarball: https://npm.fontawesome.com/@fortawesome/free-brands-svg-icons/-/6.5.2/free-brands-svg-icons-6.5.2.tgz}
     engines: {node: '>=6'}
     requiresBuild: true
     dependencies:
-      '@fortawesome/fontawesome-common-types': 0.2.36
+      '@fortawesome/fontawesome-common-types': 6.5.2
     dev: true
 
-  /@fortawesome/free-regular-svg-icons@5.15.4:
-    resolution: {integrity: sha512-9VNNnU3CXHy9XednJ3wzQp6SwNwT3XaM26oS4Rp391GsxVYA+0oDR2J194YCIWf7jNRCYKjUCOduxdceLrx+xw==, tarball: https://npm.fontawesome.com/@fortawesome/free-regular-svg-icons/-/5.15.4/free-regular-svg-icons-5.15.4.tgz}
+  /@fortawesome/free-regular-svg-icons@6.5.2:
+    resolution: {integrity: sha512-iabw/f5f8Uy2nTRtJ13XZTS1O5+t+anvlamJ3zJGLEVE2pKsAWhPv2lq01uQlfgCX7VaveT3EVs515cCN9jRbw==, tarball: https://npm.fontawesome.com/@fortawesome/free-regular-svg-icons/-/6.5.2/free-regular-svg-icons-6.5.2.tgz}
     engines: {node: '>=6'}
     requiresBuild: true
     dependencies:
-      '@fortawesome/fontawesome-common-types': 0.2.36
+      '@fortawesome/fontawesome-common-types': 6.5.2
     dev: true
 
-  /@fortawesome/free-solid-svg-icons@5.15.4:
-    resolution: {integrity: sha512-JLmQfz6tdtwxoihXLg6lT78BorrFyCf59SAwBM6qV/0zXyVeDygJVb3fk+j5Qat+Yvcxp1buLTY5iDh1ZSAQ8w==, tarball: https://npm.fontawesome.com/@fortawesome/free-solid-svg-icons/-/5.15.4/free-solid-svg-icons-5.15.4.tgz}
+  /@fortawesome/free-solid-svg-icons@6.5.2:
+    resolution: {integrity: sha512-QWFZYXFE7O1Gr1dTIp+D6UcFUF0qElOnZptpi7PBUMylJh+vFmIedVe1Ir6RM1t2tEQLLSV1k7bR4o92M+uqlw==, tarball: https://npm.fontawesome.com/@fortawesome/free-solid-svg-icons/-/6.5.2/free-solid-svg-icons-6.5.2.tgz}
     engines: {node: '>=6'}
     requiresBuild: true
     dependencies:
-      '@fortawesome/fontawesome-common-types': 0.2.36
+      '@fortawesome/fontawesome-common-types': 6.5.2
     dev: true
 
-  /@fortawesome/react-fontawesome@0.1.19(@fortawesome/fontawesome-svg-core@1.2.36)(react@16.14.0):
+  /@fortawesome/react-fontawesome@0.1.19(@fortawesome/fontawesome-svg-core@1.2.36)(react@18.2.0):
     resolution: {integrity: sha512-Hyb+lB8T18cvLNX0S3llz7PcSOAJMLwiVKBuuzwM/nI5uoBw+gQjnf9il0fR1C3DKOI5Kc79pkJ4/xB0Uw9aFQ==, tarball: https://npm.fontawesome.com/@fortawesome/react-fontawesome/-/0.1.19/react-fontawesome-0.1.19.tgz}
     peerDependencies:
       '@fortawesome/fontawesome-svg-core': ~1 || ~6
@@ -801,18 +807,18 @@ packages:
     dependencies:
       '@fortawesome/fontawesome-svg-core': 1.2.36
       prop-types: 15.8.1
-      react: 16.14.0
+      react: 18.2.0
     dev: true
 
-  /@friendsofreactjs/react-css-themr@4.2.1(react@16.14.0):
-    resolution: {integrity: sha512-gRSPnrWCc60Pus+bB99DpeiuS6tkWGIfX3WfC+MQTphC7Xpreslk5dp7rza83311MKT/9HEv+0xdI2I+jAN2rw==}
+  /@friendsofreactjs/react-css-themr@4.3.3(react@18.2.0):
+    resolution: {integrity: sha512-amvT+Zxl4fHxrW924gPg8pm6URZZJdSSNfhc3BtAetklBEliDEEPNfvKto5qeNLzb7AyuRdwp+LsTtRXhTqYzw==}
     peerDependencies:
       react: ^15.0.0-0 || ^16.0.0
     dependencies:
       hoist-non-react-statics: 3.3.2
       invariant: 2.2.4
       prop-types: 15.8.1
-      react: 16.14.0
+      react: 18.2.0
     dev: true
 
   /@humanwhocodes/config-array@0.12.3:
@@ -875,7 +881,7 @@ packages:
     resolution: {integrity: sha512-+Zq+BVy45Zvj8wjjNJINOZ04/wdywGkOQZpmbbBzN9JiqcqheOqsUaURf1H3tjVCwDPwNPjmD60m6R7vXtNufA==}
     dev: true
 
-  /@neos-project/react-ui-components@8.3.7(@fortawesome/free-brands-svg-icons@5.15.4)(@fortawesome/free-regular-svg-icons@5.15.4)(@fortawesome/free-solid-svg-icons@5.15.4)(@friendsofreactjs/react-css-themr@4.2.1)(notosans-fontface@1.3.0)(prop-types@15.8.1)(react-dom@16.14.0)(react@16.14.0):
+  /@neos-project/react-ui-components@8.3.7(@fortawesome/free-brands-svg-icons@6.5.2)(@fortawesome/free-regular-svg-icons@6.5.2)(@fortawesome/free-solid-svg-icons@6.5.2)(@friendsofreactjs/react-css-themr@4.3.3)(notosans-fontface@1.3.0)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-B4eu3oUmJZ8SZoi1p3Sp3TJKX6SN+yiCOuazNyVPu6T2oPUZt4FGit5fwEa9moCCEm+TXs+ndD2z1/zvh08tEw==}
     peerDependencies:
       '@fortawesome/free-brands-svg-icons': ^5.15.3
@@ -888,11 +894,11 @@ packages:
       react-dom: ^16.0.0
     dependencies:
       '@fortawesome/fontawesome-svg-core': 1.2.36
-      '@fortawesome/free-brands-svg-icons': 5.15.4
-      '@fortawesome/free-regular-svg-icons': 5.15.4
-      '@fortawesome/free-solid-svg-icons': 5.15.4
-      '@fortawesome/react-fontawesome': 0.1.19(@fortawesome/fontawesome-svg-core@1.2.36)(react@16.14.0)
-      '@friendsofreactjs/react-css-themr': 4.2.1(react@16.14.0)
+      '@fortawesome/free-brands-svg-icons': 6.5.2
+      '@fortawesome/free-regular-svg-icons': 6.5.2
+      '@fortawesome/free-solid-svg-icons': 6.5.2
+      '@fortawesome/react-fontawesome': 0.1.19(@fortawesome/fontawesome-svg-core@1.2.36)(react@18.2.0)
+      '@friendsofreactjs/react-css-themr': 4.3.3(react@18.2.0)
       classnames: 2.5.1
       hoist-non-react-statics: 3.3.2
       lodash.assign: 4.2.0
@@ -907,17 +913,17 @@ packages:
       plow-js: 3.0.0
       prop-types: 15.8.1
       raf: 3.4.1
-      react: 16.14.0
-      react-collapse: 5.1.1(react@16.14.0)
-      react-datetime: 2.16.3(moment@2.30.1)(react-dom@16.14.0)(react@16.14.0)
-      react-dnd: 10.0.2(react-dom@16.14.0)(react@16.14.0)
+      react: 18.2.0
+      react-collapse: 5.1.1(react@18.2.0)
+      react-datetime: 2.16.3(moment@2.30.1)(react-dom@18.2.0)(react@18.2.0)
+      react-dnd: 10.0.2(react-dom@18.2.0)(react@18.2.0)
       react-dnd-html5-backend: 10.0.2
-      react-dom: 16.14.0(react@16.14.0)
-      react-height: 3.0.2(react@16.14.0)
-      react-keydown: 1.9.12(react-dom@16.14.0)(react@16.14.0)
-      react-motion: 0.5.2(react@16.14.0)
-      react-svg: 11.2.5(react-dom@16.14.0)(react@16.14.0)
-      react-textarea-autosize: 8.5.3(react@16.14.0)
+      react-dom: 18.2.0(react@18.2.0)
+      react-height: 3.0.2(react@18.2.0)
+      react-keydown: 1.9.12(react-dom@18.2.0)(react@18.2.0)
+      react-motion: 0.5.2(react@18.2.0)
+      react-svg: 11.2.5(react-dom@18.2.0)(react@18.2.0)
+      react-textarea-autosize: 8.5.3(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
     dev: true
@@ -1009,7 +1015,7 @@ packages:
   /@types/hoist-non-react-statics@3.3.5:
     resolution: {integrity: sha512-SbcrWzkKBw2cdwRTwQAswfpB9g9LJWfjtUeW/jvNwbhC8cpmmNYVePa+ncbUe0rGTQ7G3Ff6mYUN2VMfLVr+Sg==}
     dependencies:
-      '@types/react': 18.2.75
+      '@types/react': 18.2.78
       hoist-non-react-statics: 3.3.2
     dev: true
 
@@ -1025,8 +1031,8 @@ packages:
     resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
     dev: true
 
-  /@types/react@18.2.75:
-    resolution: {integrity: sha512-+DNnF7yc5y0bHkBTiLKqXFe+L4B3nvOphiMY3tuA5X10esmjqk7smyBZzbGTy2vsiy/Bnzj8yFIBL8xhRacoOg==}
+  /@types/react@18.2.78:
+    resolution: {integrity: sha512-qOwdPnnitQY4xKlKayt42q5W5UQrSHjgoXNVEtxeqdITJ99k4VXJOP3vt8Rkm9HmgJpH50UNU+rlqfkfWOqp0A==}
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
@@ -1335,8 +1341,8 @@ packages:
       color-name: 1.1.4
     dev: true
 
-  /color-name-list@10.20.2:
-    resolution: {integrity: sha512-XetNv2ZiMs9vBpOT29PNuRUWlu4bJlSmsjMImUGA9EZRzXgIr3yABHXyRPP0z15shb8Xg1oGlDl0EPLgF0BPZQ==}
+  /color-name-list@10.21.0:
+    resolution: {integrity: sha512-ZDDgmpX1QNl58Z9i2REb3pSZjCn9rRme1vAPeHE/J6DbazUed+j00izu8TlbLFvqfZRoPFLUJz8+ZTOUXbEuKA==}
     engines: {node: '>=16', npm: '>=8.11.0'}
     dev: true
 
@@ -2101,25 +2107,25 @@ packages:
       performance-now: 2.1.0
     dev: true
 
-  /react-collapse@5.1.1(react@16.14.0):
+  /react-collapse@5.1.1(react@18.2.0):
     resolution: {integrity: sha512-k6cd7csF1o9LBhQ4AGBIdxB60SUEUMQDAnL2z1YvYNr9KoKr+nDkhN6FK7uGaBd/rYrYfrMpzpmJEIeHRYogBw==}
     peerDependencies:
       react: '>=16.3.0'
     dependencies:
-      react: 16.14.0
+      react: 18.2.0
     dev: true
 
-  /react-colorful@5.6.1(react-dom@16.14.0)(react@16.14.0):
+  /react-colorful@5.6.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-1exovf0uGTGyq5mXQT0zgQ80uvj2PCwvF8zY1RN9/vbJVSjSo3fsB/4L3ObbF7u70NduSiK4xu4Y6q1MHoUGEw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      react: 16.14.0
-      react-dom: 16.14.0(react@16.14.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /react-datetime@2.16.3(moment@2.30.1)(react-dom@16.14.0)(react@16.14.0):
+  /react-datetime@2.16.3(moment@2.30.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-amWfb5iGEiyqjLmqCLlPpu2oN415jK8wX1qoTq7qn6EYiU7qQgbNHglww014PT4O/3G5eo/3kbJu/M/IxxTyGw==}
     peerDependencies:
       moment: '>=2.16.0'
@@ -2130,9 +2136,9 @@ packages:
       moment: 2.30.1
       object-assign: 3.0.0
       prop-types: 15.8.1
-      react: 16.14.0
-      react-dom: 16.14.0(react@16.14.0)
-      react-onclickoutside: 6.13.0(react-dom@16.14.0)(react@16.14.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-onclickoutside: 6.13.0(react-dom@18.2.0)(react@18.2.0)
     dev: true
 
   /react-dnd-html5-backend@10.0.2:
@@ -2141,7 +2147,7 @@ packages:
       dnd-core: 10.0.2
     dev: true
 
-  /react-dnd@10.0.2(react-dom@16.14.0)(react@16.14.0):
+  /react-dnd@10.0.2(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-SC2Ymvntynhoqtf5zaFhZscm9xenCoMofilxPdlwUlaelAzmbl9fw82C4ZJ//+lNm3kWAKXjGDZg2/aWjKEAtg==}
     peerDependencies:
       react: '>= 16.8'
@@ -2151,47 +2157,45 @@ packages:
       '@types/hoist-non-react-statics': 3.3.5
       dnd-core: 10.0.2
       hoist-non-react-statics: 3.3.2
-      react: 16.14.0
-      react-dom: 16.14.0(react@16.14.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /react-dom@16.14.0(react@16.14.0):
-    resolution: {integrity: sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==}
+  /react-dom@18.2.0(react@18.2.0):
+    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
-      react: ^16.14.0
+      react: ^18.2.0
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
-      prop-types: 15.8.1
-      react: 16.14.0
-      scheduler: 0.19.1
+      react: 18.2.0
+      scheduler: 0.23.0
     dev: true
 
-  /react-height@3.0.2(react@16.14.0):
+  /react-height@3.0.2(react@18.2.0):
     resolution: {integrity: sha512-tv9wUx95wbFONvRfq0lJjIrEI5QSwa28tSK3m0spuc3YAiz6nJDCVRK5k6VgE4xyQGvr7C1tAzwNTWxwf1bHow==}
     peerDependencies:
       react: '>=15.3'
     dependencies:
       prop-types: 15.8.1
-      react: 16.14.0
+      react: 18.2.0
     dev: true
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
 
-  /react-keydown@1.9.12(react-dom@16.14.0)(react@16.14.0):
+  /react-keydown@1.9.12(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-KnQdVCTlPeJJ5FcnaqT4LJFHFUWbr/P+KnUtKA3xOc2JuJy738LyNM8jdnkWNkexHWEXt/021ufR5l9e3fzUCQ==}
     peerDependencies:
       react: '>= 0.14.0'
       react-dom: '>= 0.14.0'
     dependencies:
       core-js: 3.36.1
-      react: 16.14.0
-      react-dom: 16.14.0(react@16.14.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /react-motion@0.5.2(react@16.14.0):
+  /react-motion@0.5.2(react@18.2.0):
     resolution: {integrity: sha512-9q3YAvHoUiWlP3cK0v+w1N5Z23HXMj4IF4YuvjvWegWqNPfLXsOBE/V7UvQGpXxHFKRQQcNcVQE31g9SB/6qgQ==}
     peerDependencies:
       react: ^0.14.9 || ^15.3.0 || ^16.0.0
@@ -2199,20 +2203,20 @@ packages:
       performance-now: 0.2.0
       prop-types: 15.8.1
       raf: 3.4.1
-      react: 16.14.0
+      react: 18.2.0
     dev: true
 
-  /react-onclickoutside@6.13.0(react-dom@16.14.0)(react@16.14.0):
+  /react-onclickoutside@6.13.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-ty8So6tcUpIb+ZE+1HAhbLROvAIJYyJe/1vRrrcmW+jLsaM+/powDRqxzo6hSh9CuRZGSL1Q8mvcF5WRD93a0A==}
     peerDependencies:
       react: ^15.5.x || ^16.x || ^17.x || ^18.x
       react-dom: ^15.5.x || ^16.x || ^17.x || ^18.x
     dependencies:
-      react: 16.14.0
-      react-dom: 16.14.0(react@16.14.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /react-svg@11.2.5(react-dom@16.14.0)(react@16.14.0):
+  /react-svg@11.2.5(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-uUMhRVdU//5qktiTSO2W6nQeHRLwYA1FsWANQFB5O33UgT2uT0V5wVapu46+wz1mx6wt1j53+1aA8QuNn4lJ6A==}
     peerDependencies:
       react: ^15.5.4 || ^16.0.0 || ^17.0.0
@@ -2221,31 +2225,29 @@ packages:
       '@babel/runtime': 7.24.4
       '@tanem/svg-injector': 8.2.5
       prop-types: 15.8.1
-      react: 16.14.0
-      react-dom: 16.14.0(react@16.14.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /react-textarea-autosize@8.5.3(react@16.14.0):
+  /react-textarea-autosize@8.5.3(react@18.2.0):
     resolution: {integrity: sha512-XT1024o2pqCuZSuBt9FwHlaDeNtVrtCXu0Rnz88t1jUGheCLa3PhjE1GH8Ctm2axEtvdCl5SUHYschyQ0L5QHQ==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.24.4
-      react: 16.14.0
-      use-composed-ref: 1.3.0(react@16.14.0)
-      use-latest: 1.2.1(react@16.14.0)
+      react: 18.2.0
+      use-composed-ref: 1.3.0(react@18.2.0)
+      use-latest: 1.2.1(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
     dev: true
 
-  /react@16.14.0:
-    resolution: {integrity: sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==}
+  /react@18.2.0:
+    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
-      prop-types: 15.8.1
     dev: true
 
   /readdirp@3.6.0:
@@ -2281,11 +2283,10 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /scheduler@0.19.1:
-    resolution: {integrity: sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==}
+  /scheduler@0.23.0:
+    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
     dev: true
 
   /semver@6.3.1:
@@ -2431,15 +2432,15 @@ packages:
       punycode: 2.3.1
     dev: true
 
-  /use-composed-ref@1.3.0(react@16.14.0):
+  /use-composed-ref@1.3.0(react@18.2.0):
     resolution: {integrity: sha512-GLMG0Jc/jiKov/3Ulid1wbv3r54K9HlMW29IWcDFPEqFkSO2nS0MuefWgMJpeHQ9YJeXDL3ZUF+P3jdXlZX/cQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      react: 16.14.0
+      react: 18.2.0
     dev: true
 
-  /use-isomorphic-layout-effect@1.1.2(react@16.14.0):
+  /use-isomorphic-layout-effect@1.1.2(react@18.2.0):
     resolution: {integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==}
     peerDependencies:
       '@types/react': '*'
@@ -2448,10 +2449,10 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      react: 16.14.0
+      react: 18.2.0
     dev: true
 
-  /use-latest@1.2.1(react@16.14.0):
+  /use-latest@1.2.1(react@18.2.0):
     resolution: {integrity: sha512-xA+AVm/Wlg3e2P/JiItTziwS7FK92LWrDB0p+hgXloIMuVCeJJ8v6f0eeHyPZaJrM+usM1FkFfbNCrJGs8A/zw==}
     peerDependencies:
       '@types/react': '*'
@@ -2460,8 +2461,8 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      react: 16.14.0
-      use-isomorphic-layout-effect: 1.1.2(react@16.14.0)
+      react: 18.2.0
+      use-isomorphic-layout-effect: 1.1.2(react@18.2.0)
     dev: true
 
   /utility-types@3.11.0:

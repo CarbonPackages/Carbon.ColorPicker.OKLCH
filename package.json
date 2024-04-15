@@ -12,7 +12,7 @@
     "@stylexjs/esbuild-plugin": "^0.5.1",
     "@stylexjs/stylex": "^0.5.1",
     "@types/nearest-color": "^0.4.1",
-    "color-name-list": "^10.20.2",
+    "color-name-list": "^10.21.0",
     "colorjs.io": "^0.5.0",
     "esbuild": "^0.20.2",
     "eslint": "^9.0.0",
