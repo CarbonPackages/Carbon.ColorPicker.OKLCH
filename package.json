@@ -7,19 +7,19 @@
     "watch": "node build.mjs --watch"
   },
   "devDependencies": {
-    "@neos-project/neos-ui-extensibility": "~8.3.9",
-    "@neos-project/react-ui-components": "^8.3.9",
-    "@stylexjs/esbuild-plugin": "^0.7.5",
-    "@stylexjs/stylex": "^0.7.5",
+    "@neos-project/neos-ui-extensibility": "~8.3.10",
+    "@neos-project/react-ui-components": "^8.3.10",
+    "@stylexjs/esbuild-plugin": "^0.8.0",
+    "@stylexjs/stylex": "^0.8.0",
     "@types/nearest-color": "^0.4.1",
-    "color-name-list": "^10.25.1",
+    "color-name-list": "^10.28.0",
     "colorjs.io": "^0.5.2",
-    "esbuild": "^0.23.1",
-    "eslint": "^9.10.0",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.12.0",
     "nearest-color": "^0.4.4",
     "onchange": "^7.1.0",
     "prettier": "^3.3.3",
     "react-colorful": "^5.6.1",
-    "typescript-eslint": "^8.4.0"
+    "typescript-eslint": "^8.8.0"
   }
 }
