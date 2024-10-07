@@ -67,6 +67,7 @@ const styles = stylex.create({
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
+        textAlign: "left",
         minHeight: sizes.goldenUnit,
         borderTopLeftRadius: sizes.borderRadius,
         borderBottomLeftRadius: sizes.borderRadius,
