@@ -134,6 +134,9 @@ Neos:
           customPropertyName: "color"
           # The precision of the OKLCH color picker. Set to 0 to disable rounding and use the raw values.
           precision: 5
+          # Set the color contrast threshold for the color name output. Value between 0 and 1
+          # Depend on the luminance, the text will be black or white
+          contrastThreshold: 0.6
           # The presets are based on https://tailwindcss.com/docs/customizing-colors with the key 600
           # false and null values get filtered out. You can also disable all presets with presets: false
           presets:
@@ -180,6 +183,7 @@ Foo.Bar:Your.Prototype:
             allowEmpty: false
             collapsed: true
             customPropertyName: "color-main"
+            contrastThreshold: "ClientEval: node.properties.contrastThresholdProperty / 100"
             presets:
               red: "#dc2626"
               orange: "#ea580c"

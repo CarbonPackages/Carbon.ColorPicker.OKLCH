@@ -24,6 +24,7 @@ const defaultOptions = {
     showHexInput: true,
     showLightness: false,
     showLuminance: false,
+    contrastThreshold: 0.6,
     precision: 5,
     presets: {},
 };
@@ -62,7 +63,7 @@ const styles = stylex.create({
         background: "none",
         backgroundColor: colors.contrastNeutral,
     },
-    popoverButtonPreview: (color, luminance) => ({
+    popoverButtonPreview: (color, luminance, contrastThreshold) => ({
         flex: "1",
         display: "flex",
         alignItems: "center",
@@ -71,7 +72,7 @@ const styles = stylex.create({
         minHeight: sizes.goldenUnit,
         borderTopLeftRadius: sizes.borderRadius,
         borderBottomLeftRadius: sizes.borderRadius,
-        color: luminance > 0.6 ? "black" : "white",
+        color: luminance > contrastThreshold ? "black" : "white",
         backgroundColor: color || null,
         backgroundSize: color ? null : "16px 16px",
         backgroundImage: color ? null : colors.checkerboard,
@@ -104,7 +105,7 @@ const styles = stylex.create({
 function Editor(props) {
     const options = { ...defaultOptions, ...props.config, ...props.options };
     const { value, commit, highlight, i18nRegistry, id } = props;
-    const { disabled, mode, collapsed, allowEmpty, precision } = options;
+    const { disabled, mode, collapsed, allowEmpty, precision, contrastThreshold } = options;
     if (mode !== "coords" && mode !== "hex" && mode !== "all" && mode !== "oklch") {
         return (
             <div {...stylex.props(styles.error)}>
@@ -174,7 +175,11 @@ function Editor(props) {
                         aria-expanded={open}
                         aria-controls={`${id}-panel`}
                     >
-                        <output {...stylex.props(styles.popoverButtonPreview(state?.oklch, state?.coords?.l || 0))}>
+                        <output
+                            {...stylex.props(
+                                styles.popoverButtonPreview(state?.oklch, state?.coords?.l || 0, contrastThreshold),
+                            )}
+                        >
                             <Suspense fallback={<HexOutput hex={state?.hex} />}>
                                 <ColorName hex={state?.hex} />
                             </Suspense>
