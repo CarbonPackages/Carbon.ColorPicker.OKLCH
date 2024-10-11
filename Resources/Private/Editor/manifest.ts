@@ -7,5 +7,6 @@ manifest("Carbon.ColorPicker:OKLCH", {}, (globalRegistry) => {
 
     editorsRegistry.set("Carbon.ColorPicker/OKLCH", {
         component: ColorPicker,
+        hasOwnLabel: true,
     });
 });

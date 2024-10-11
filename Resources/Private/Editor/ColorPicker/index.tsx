@@ -1,22 +1,29 @@
 // @ts-ignore
 import React, { useState, useEffect, MouseEvent, lazy, Suspense } from "react";
 import { neos } from "@neos-project/neos-ui-decorators";
+import { connect } from "react-redux";
 import Panel, { setStateFromValue } from "./Components";
-import { Icon, IconButton } from "@neos-project/react-ui-components";
+import { Icon, IconButton, Label } from "@neos-project/react-ui-components";
+import { selectors } from "@neos-project/neos-ui-redux-store";
 import * as stylex from "@stylexjs/stylex";
 import { colors, sizes, transitions } from "./Tokens.stylex";
 import HexOutput from "./Components/HexOutput";
 
-const neosifier = neos((globalRegistry) => ({
-    i18nRegistry: globalRegistry.get("i18n"),
-    config: globalRegistry.get("frontendConfiguration").get("Carbon.ColorPicker.OKLCH"),
-}));
+const getDataLoaderOptionsForProps = (props: any) => ({
+    contextNodePath: props.focusedNodePath,
+    dataSourceIdentifier: props.options.dataSourceIdentifier,
+    dataSourceUri: props.options.dataSourceUri,
+    dataSourceAdditionalData: props.options.dataSourceAdditionalData,
+    dataSourceDisableCaching: Boolean(props.options.dataSourceDisableCaching),
+});
 
 const ColorName = lazy(() => import("./ColorName.js"));
 
 const defaultOptions = {
     mode: "all",
     customPropertyName: "color",
+    // This option makes it possible hide the whole editor based on data source
+    hidden: false,
     disabled: false,
     allowEmpty: true,
     showPresets: true,
@@ -24,6 +31,7 @@ const defaultOptions = {
     showHexInput: true,
     showLightness: false,
     showLuminance: false,
+    hasOwnLabel: false,
     contrastThreshold: 0.6,
     precision: 5,
     presets: {},
@@ -50,6 +58,12 @@ const styles = stylex.create({
         display: "flex",
         flexDirection: "column",
         gap: sizes.spacingHalf,
+    },
+    loading: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: sizes.goldenUnit,
     },
     popoverButton: {
         display: "flex",
@@ -103,9 +117,9 @@ const styles = stylex.create({
 
 // @ts-ignore
 function Editor(props) {
-    const options = { ...defaultOptions, ...props.config, ...props.options };
-    const { value, commit, highlight, i18nRegistry, id } = props;
-    const { disabled, mode, collapsed, allowEmpty, precision, contrastThreshold } = options;
+    const mergedOptions = { ...defaultOptions, ...props.config, ...props.options };
+    const { value, commit, highlight, i18nRegistry, id, dataSourcesDataLoader, label } = props;
+    const { mode, precision, dataSourceIdentifier, dataSourceUri, dataSourceAdditionalData } = mergedOptions;
     if (mode !== "coords" && mode !== "hex" && mode !== "all" && mode !== "oklch") {
         return (
             <div {...stylex.props(styles.error)}>
@@ -114,8 +128,30 @@ function Editor(props) {
         );
     }
 
+    const hasDataSource = !!(dataSourceIdentifier || dataSourceUri);
+    const [options, setOptions] = useState(hasDataSource ? [] : mergedOptions);
+    const [isLoading, setIsLoading] = useState(hasDataSource);
     const [open, setOpen] = useState(false);
     const [state, setState] = useState(setStateFromValue(value, mode, precision));
+
+    // We use this hack to prevent the editor from re-rendering all the time, even if the options are the same.
+    const [dataSourceOptionsAsJSON, setDataSourceOptionsAsJSON] = useState(null);
+
+    useEffect(() => {
+        const dataAsJSON = JSON.stringify({ dataSourceIdentifier, dataSourceUri, dataSourceAdditionalData });
+        if (!hasDataSource || dataSourceOptionsAsJSON === dataAsJSON) {
+            return;
+        }
+
+        setDataSourceOptionsAsJSON(dataAsJSON);
+
+        // Load options from data source
+        dataSourcesDataLoader.resolveValue(getDataLoaderOptionsForProps(props), value).then((values: any) => {
+            setIsLoading(false);
+            console.log({ values }, { ...mergedOptions, ...values });
+            setOptions({ ...mergedOptions, ...values });
+        });
+    }, [dataSourceIdentifier, dataSourceUri, dataSourceAdditionalData]);
 
     useEffect(() => {
         if (!state?.hex) {
@@ -161,69 +197,106 @@ function Editor(props) {
         }
     }, [state]);
 
-    const enableCollapsed = collapsed && options.showPicker;
+    const enableCollapsed = options.collapsed && options.showPicker;
+
+    if (isLoading) {
+        return (
+            <div
+                {...stylex.props(styles.loading)}
+                title={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:loading")}
+            >
+                <Icon icon="spinner" size="lg" spin />
+            </div>
+        );
+    }
+
+    if (options.hidden) {
+        return null;
+    }
 
     return (
-        <div {...stylex.props(styles.wrapper, disabled && styles.disabled, enableCollapsed && styles.noGap)}>
-            {enableCollapsed ? (
-                <>
-                    <button
-                        {...stylex.props(styles.popoverButton, highlight && styles.highlight)}
-                        type="button"
-                        title={i18nRegistry.translate(`Carbon.ColorPicker.OKLCH:Main:${open ? "close" : "open"}Panel`)}
-                        onClick={() => setOpen(!open)}
-                        aria-expanded={open}
-                        aria-controls={`${id}-panel`}
-                    >
-                        <output
-                            {...stylex.props(
-                                styles.popoverButtonPreview(state?.oklch, state?.coords?.l || 0, contrastThreshold),
+        <>
+            <Label htmlFor={id}>{i18nRegistry.translate(label)}</Label>
+            <div
+                {...stylex.props(styles.wrapper, options.disabled && styles.disabled, enableCollapsed && styles.noGap)}
+            >
+                {enableCollapsed ? (
+                    <>
+                        <button
+                            {...stylex.props(styles.popoverButton, highlight && styles.highlight)}
+                            type="button"
+                            title={i18nRegistry.translate(
+                                `Carbon.ColorPicker.OKLCH:Main:${open ? "close" : "open"}Panel`,
                             )}
+                            onClick={() => setOpen(!open)}
+                            aria-expanded={open}
+                            aria-controls={`${id}-panel`}
                         >
-                            <Suspense fallback={<HexOutput hex={state?.hex} />}>
-                                <ColorName hex={state?.hex} />
-                            </Suspense>
-                        </output>
-                        {Boolean(allowEmpty) && Boolean(state?.oklch) && (
-                            <IconButton
-                                style="light"
-                                icon="times"
-                                title={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:resetColor")}
-                                onClick={(event: MouseEvent<HTMLButtonElement>) => {
-                                    event.stopPropagation();
-                                    setState(null);
-                                }}
-                            />
-                        )}
-                        <Icon icon="chevron-down" {...stylex.props(styles.popoverButtonIcon(open))} />
-                    </button>
-                    <div {...stylex.props(styles.popoverPanel(open))} aria-hidden={!open} id={`${id}-panel`}>
-                        <div {...stylex.props(styles.wrapper, styles.popoverContent)}>
-                            <Panel
-                                {...options}
-                                state={state}
-                                setState={setState}
-                                i18nRegistry={i18nRegistry}
-                                id={id}
-                                onFocus={() => setOpen(true)}
-                                collapsed={true}
-                            />
+                            <output
+                                {...stylex.props(
+                                    styles.popoverButtonPreview(
+                                        state?.oklch,
+                                        state?.coords?.l || 0,
+                                        options.contrastThreshold,
+                                    ),
+                                )}
+                            >
+                                <Suspense fallback={<HexOutput hex={state?.hex} />}>
+                                    <ColorName hex={state?.hex} />
+                                </Suspense>
+                            </output>
+                            {Boolean(options.allowEmpty) && Boolean(state?.oklch) && (
+                                <IconButton
+                                    style="light"
+                                    icon="times"
+                                    title={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:resetColor")}
+                                    onClick={(event: MouseEvent<HTMLButtonElement>) => {
+                                        event.stopPropagation();
+                                        setState(null);
+                                    }}
+                                />
+                            )}
+                            <Icon icon="chevron-down" {...stylex.props(styles.popoverButtonIcon(open))} />
+                        </button>
+                        <div {...stylex.props(styles.popoverPanel(open))} aria-hidden={!open} id={`${id}-panel`}>
+                            <div {...stylex.props(styles.wrapper, styles.popoverContent)}>
+                                <Panel
+                                    {...options}
+                                    state={state}
+                                    setState={setState}
+                                    i18nRegistry={i18nRegistry}
+                                    id={id}
+                                    onFocus={() => setOpen(true)}
+                                    collapsed={true}
+                                />
+                            </div>
                         </div>
-                    </div>
-                </>
-            ) : (
-                <Panel
-                    {...options}
-                    state={state}
-                    setState={setState}
-                    highlight={highlight}
-                    i18nRegistry={i18nRegistry}
-                    id={id}
-                    collapsed={false}
-                />
-            )}
-        </div>
+                    </>
+                ) : (
+                    <Panel
+                        {...options}
+                        state={state}
+                        setState={setState}
+                        highlight={highlight}
+                        i18nRegistry={i18nRegistry}
+                        id={id}
+                        collapsed={false}
+                    />
+                )}
+            </div>
+        </>
     );
 }
 
-export default neosifier(Editor);
+const neosifier = neos((globalRegistry) => ({
+    i18nRegistry: globalRegistry.get("i18n"),
+    config: globalRegistry.get("frontendConfiguration").get("Carbon.ColorPicker.OKLCH"),
+    // @ts-ignore
+    dataSourcesDataLoader: globalRegistry.get("dataLoaders").get("DataSources"),
+}));
+const connector = connect((state: any) => ({
+    // @ts-ignore
+    focusedNodePath: selectors.CR.Nodes.focusedNodePathSelector(state),
+}));
+
+export default neosifier(connector(Editor));

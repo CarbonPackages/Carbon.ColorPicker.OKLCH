@@ -7,6 +7,9 @@
         datatype="plaintext"
     >
         <body>
+            <trans-unit id="loading" xml:space="preserve">
+                <source>Loading…</source>
+            </trans-unit>
             <trans-unit id="resetColor" xml:space="preserve">
                 <source>Reset color</source>
             </trans-unit>

@@ -112,6 +112,8 @@ Neos:
     Ui:
       frontendConfiguration:
         Carbon.ColorPicker.OKLCH:
+          # This option makes it possible hide the whole editor (incl. label) based on data source
+          hidden: false
           # Set the mode of the color picker. Possible values are: 'oklch', 'hex', 'coords', 'all'
           mode: "all"
           # Disable the color picker
@@ -162,6 +164,14 @@ Neos:
             fuchsia: "#c026d3"
             pink: "#db2777"
             rose: "#e11d48"
+
+        # Optionally use a data source:
+        # mode and precision cannot be set via datasource
+        dataSourceIdentifier: "some-datasource"
+        dataSourceUri: "some/custom-route"
+        dataSourceAdditionalData:
+          foo: "bar"
+        dataSourceDisableCaching: false
 ```
 
 The settings can also be set in your property configuration:
