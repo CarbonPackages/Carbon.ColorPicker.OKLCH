@@ -118,7 +118,8 @@ const styles = stylex.create({
 // @ts-ignore
 function Editor(props) {
     const mergedOptions = { ...defaultOptions, ...props.config, ...props.options };
-    const { value, commit, highlight, i18nRegistry, id, dataSourcesDataLoader, label } = props;
+    const { value, commit, highlight, i18nRegistry, id, dataSourcesDataLoader } = props;
+    const label = i18nRegistry.translate(props.label);
     const { mode, precision, dataSourceIdentifier, dataSourceUri, dataSourceAdditionalData } = mergedOptions;
     if (mode !== "coords" && mode !== "hex" && mode !== "all" && mode !== "oklch") {
         return (
@@ -201,12 +202,16 @@ function Editor(props) {
 
     if (isLoading) {
         return (
-            <div
-                {...stylex.props(styles.loading)}
-                title={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:loading")}
-            >
-                <Icon icon="spinner" size="lg" spin />
-            </div>
+            <>
+                <Label htmlFor={id}>{label}</Label>
+                <div
+                    {...stylex.props(styles.loading)}
+                    id={id}
+                    title={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:loading")}
+                >
+                    <Icon icon="spinner" size="lg" spin />
+                </div>
+            </>
         );
     }
 
@@ -216,7 +221,7 @@ function Editor(props) {
 
     return (
         <>
-            <Label htmlFor={id}>{i18nRegistry.translate(label)}</Label>
+            <Label htmlFor={id}>{label}</Label>
             <div
                 {...stylex.props(styles.wrapper, options.disabled && styles.disabled, enableCollapsed && styles.noGap)}
             >
