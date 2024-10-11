@@ -2,6 +2,12 @@
 
 .DEFAULT_GOAL := production
 
+## Make pnpm updates
+pnpm-update:
+	@corepack use pnpm@latest
+	@pnpm up --latest --interactive
+	@pnpm upgrade;
+
 ## Prettier files
 prettier:
 	@pnpm prettier --write --no-error-on-unmatched-pattern '**/*.{yaml,ts,tsx,mjs,js,md}'
