@@ -149,7 +149,6 @@ function Editor(props) {
         // Load options from data source
         dataSourcesDataLoader.resolveValue(getDataLoaderOptionsForProps(props), value).then((values: any) => {
             setIsLoading(false);
-            console.log({ values }, { ...mergedOptions, ...values });
             setOptions({ ...mergedOptions, ...values });
         });
     }, [dataSourceIdentifier, dataSourceUri, dataSourceAdditionalData]);
