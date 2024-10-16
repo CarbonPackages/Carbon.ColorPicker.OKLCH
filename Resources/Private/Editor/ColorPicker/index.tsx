@@ -118,7 +118,7 @@ const styles = stylex.create({
 // @ts-ignore
 function Editor(props) {
     const mergedOptions = { ...defaultOptions, ...props.config, ...props.options };
-    const { value, commit, highlight, i18nRegistry, id, dataSourcesDataLoader } = props;
+    const { value, commit, highlight, i18nRegistry, id, dataSourcesDataLoader, renderHelpIcon } = props;
     const label = i18nRegistry.translate(props.label);
     const { mode, precision, dataSourceIdentifier, dataSourceUri, dataSourceAdditionalData } = mergedOptions;
     if (mode !== "coords" && mode !== "hex" && mode !== "all" && mode !== "oklch") {
@@ -202,7 +202,9 @@ function Editor(props) {
     if (isLoading) {
         return (
             <>
-                <Label htmlFor={id}>{label}</Label>
+                <Label htmlFor={id}>
+                    {label} {renderHelpIcon()}
+                </Label>
                 <div
                     {...stylex.props(styles.loading)}
                     id={id}
@@ -220,7 +222,9 @@ function Editor(props) {
 
     return (
         <>
-            <Label htmlFor={id}>{label}</Label>
+            <Label htmlFor={id}>
+                {label} {renderHelpIcon()}
+            </Label>
             <div
                 {...stylex.props(styles.wrapper, options.disabled && styles.disabled, enableCollapsed && styles.noGap)}
             >
