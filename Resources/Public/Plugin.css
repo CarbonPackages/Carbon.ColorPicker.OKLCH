@@ -5,6 +5,8 @@
 .x11g6tue:not(#\#){background:none}
 .x1hgx17m:not(#\#){background:var(--xm2tcaw)}
 .x1wty727:not(#\#){border:0}
+.x1fdo2jl:not(#\#){grid-area:content}
+.xd3rg8h:not(#\#){grid-template:'content' 1fr / 1fr}
 .xdneb0g:not(#\#){margin:calc(var(--x12ft4ps) * -1) calc(var(--xdcwdaz) * -1)}
 .x1717udv:not(#\#){padding:0}
 .x1dskcqz:not(#\#){padding:5px var(--x1xhd60u)}
@@ -24,6 +26,7 @@
 .xb3r6kr:not(#\#):not(#\#){overflow:hidden}
 .x1hr3lfm:not(#\#):not(#\#){padding-inline:16px}
 .xtqyqw7:not(#\#):not(#\#){padding-inline:var(--x1xhd60u)}
+.xc8avi6:not(#\#):not(#\#){transition:opacity var(--transition-Default),transform var(--transition-Default) ease}
 .xl913vs:not(#\#):not(#\#){transition:transform var(--xk43sx8) var(--x111wrgi)}
 .x5z8be9:not(#\#):not(#\#){transition:var(--transition,revert)}
 .xfbmp4j:where(*) .react-colorful__pointer:hover:not(#\#):not(#\#){border-color:var(--x15izvnz)}
@@ -53,10 +56,10 @@
 .x1sirlc8:not(#\#):not(#\#):not(#\#){font-family:var(--xhezqga)}
 .xiq9r4:not(#\#):not(#\#):not(#\#){font-size:var(--x11o33fd)}
 .xi7raoi:not(#\#):not(#\#):not(#\#){grid-template-rows:var(--gridTemplateRows,revert)}
-.xl56j7k:not(#\#):not(#\#):not(#\#){justify-content:center}
 .x1nhvcw1:not(#\#):not(#\#):not(#\#){justify-content:flex-start}
 .x1qughib:not(#\#):not(#\#):not(#\#){justify-content:space-between}
 .x1szn6h9:not(#\#):not(#\#):not(#\#){justify-content:stretch}
+.x1o2pa38:not(#\#):not(#\#):not(#\#){justify-items:center}
 .x1bexyg0:not(#\#):not(#\#):not(#\#){line-height:calc(var(--x1fv9uxr) - 10px)}
 .x190dgpg:not(#\#):not(#\#):not(#\#){opacity:.65}
 .x1u4uod0:not(#\#):not(#\#):not(#\#){opacity:var(--opacity,revert)}
@@ -84,6 +87,7 @@
 .x16i8m89:not(#\#):not(#\#):not(#\#):not(#\#){margin-top:var(--x1xhd60u)}
 .xlt0ddm:not(#\#):not(#\#):not(#\#):not(#\#){margin-top:var(--xdcwdaz)}
 .x193iq5w:not(#\#):not(#\#):not(#\#):not(#\#){max-width:100%}
+.x1gu4hsp:not(#\#):not(#\#):not(#\#):not(#\#){min-height:var(--minHeight,revert)}
 .x1rhtz0q:not(#\#):not(#\#):not(#\#):not(#\#){min-height:var(--x1fv9uxr)}
 .x15g7okx:not(#\#):not(#\#):not(#\#):not(#\#){min-width:var(--x1fv9uxr)}
 .xh8yej3:not(#\#):not(#\#):not(#\#):not(#\#){width:100%}

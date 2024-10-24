@@ -8,6 +8,7 @@ import { selectors } from "@neos-project/neos-ui-redux-store";
 import * as stylex from "@stylexjs/stylex";
 import { colors, sizes, transitions } from "./Tokens.stylex";
 import HexOutput from "./Components/HexOutput";
+import LoadingAnimation from "carbon-neos-loadinganimation/LoadingWithStyleX";
 
 const getDataLoaderOptionsForProps = (props: any) => ({
     contextNodePath: props.focusedNodePath,
@@ -58,12 +59,6 @@ const styles = stylex.create({
         display: "flex",
         flexDirection: "column",
         gap: sizes.spacingHalf,
-    },
-    loading: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: sizes.goldenUnit,
     },
     popoverButton: {
         display: "flex",
@@ -205,13 +200,7 @@ function Editor(props) {
                 <Label htmlFor={id}>
                     {label} {renderHelpIcon()}
                 </Label>
-                <div
-                    {...stylex.props(styles.loading)}
-                    id={id}
-                    title={i18nRegistry.translate("Carbon.ColorPicker.OKLCH:Main:loading")}
-                >
-                    <Icon icon="spinner" size="lg" spin />
-                </div>
+                <LoadingAnimation isLoading={isLoading} id={id} title="Carbon.ColorPicker.OKLCH:Main:loading" />
             </>
         );
     }
