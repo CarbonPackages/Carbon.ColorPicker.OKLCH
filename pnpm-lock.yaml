@@ -27,8 +27,8 @@ importers:
         specifier: ^7.1.34
         version: 7.1.34
       carbon-neos-loadinganimation:
-        specifier: ^1.1.0
-        version: 1.1.0(@neos-project/neos-ui-extensibility@8.3.11)
+        specifier: ^1.1.1
+        version: 1.1.1(@neos-project/neos-ui-extensibility@8.3.11)
       color-name-list:
         specifier: ^10.28.0
         version: 10.28.0
@@ -746,8 +746,8 @@ packages:
   caniuse-lite@1.0.30001669:
     resolution: {integrity: sha512-DlWzFDJqstqtIVx1zeSpIMLjunf5SmwOw0N2Ck/QSQdS8PLS4+9HrLaYei4w8BIAL7IB/UEDu889d8vhCTPA0w==}
 
-  carbon-neos-loadinganimation@1.1.0:
-    resolution: {integrity: sha512-4fSv/Sy7uFLfksQTtq99CM1yy1yIcQTZ1e4OE5yQL65iJfPCiGwsVgeoBQCGlpM+LZQ347xEX6jaBHAzjJuzNA==}
+  carbon-neos-loadinganimation@1.1.1:
+    resolution: {integrity: sha512-x0xjMyMdYEEZxe+Qn2Q077PPdr7SAuJ6b7B7mTT/550KZPaHCIKdPHNnWt9O20/811cPGv+tU4wSXCaDvExJVw==}
     peerDependencies:
       '@neos-project/neos-ui-extensibility': ^8.3.0 || ^9.0.0
 
@@ -2061,7 +2061,7 @@ snapshots:
 
   caniuse-lite@1.0.30001669: {}
 
-  carbon-neos-loadinganimation@1.1.0(@neos-project/neos-ui-extensibility@8.3.11):
+  carbon-neos-loadinganimation@1.1.1(@neos-project/neos-ui-extensibility@8.3.11):
     dependencies:
       '@neos-project/neos-ui-extensibility': 8.3.11
 
