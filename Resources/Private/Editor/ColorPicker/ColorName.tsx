@@ -1,10 +1,10 @@
 //@ts-ignore
 import React from "react";
 import nearestColor from "nearest-color";
-import colorNameList from "color-name-list/dist/colornames.esm.mjs";
+import { colornames } from "color-name-list";
 
 // nearestColor need objects {name => hex} as input
-const colors = colorNameList.reduce(
+const colors = colornames.reduce(
     (o: object, { name, hex }: { name: string; hex: string }) => Object.assign(o, { [name]: hex }),
     {},
 );

@@ -52,6 +52,7 @@ const styles = stylex.create({
         },
     },
     rangeSlider: {
+        "--opacity": 0.7,
         width: "100%",
         height: sizes.input,
         appearance: "none",
@@ -59,6 +60,10 @@ const styles = stylex.create({
         border: 0,
         outline: "none",
         backgroundColor: colors.contrastNeutral,
+
+        ":focus": {
+            "--opacity": 1,
+        },
 
         "::-webkit-slider-thumb": {
             appearance: "none",
@@ -69,15 +74,13 @@ const styles = stylex.create({
             width: 20,
             borderWidth: 0,
             borderRadius: sizes.borderRadius,
-            transitionProperty: "transform, background-color",
+            opacity: "var(--opacity)",
+            transitionProperty: "transform, opacity",
             transitionTimingFunction: transitions.timing,
             transitionDuration: transitions.default,
 
             ":hover": {
-                backgroundColor: colors.primaryBlueHover,
-            },
-            ":focus": {
-                backgroundColor: colors.primaryBlueHover,
+                opacity: 1,
             },
             ":active": {
                 cursor: "grabbing",
@@ -93,15 +96,13 @@ const styles = stylex.create({
             width: 20,
             borderWidth: 0,
             borderRadius: sizes.borderRadius,
-            transitionProperty: "transform, background-color",
+            opacity: "var(--opacity)",
+            transitionProperty: "transform, opacity",
             transitionTimingFunction: transitions.timing,
             transitionDuration: transitions.default,
 
             ":hover": {
-                backgroundColor: colors.primaryBlueHover,
-            },
-            ":focus": {
-                backgroundColor: colors.primaryBlueHover,
+                opacity: 1,
             },
             ":active": {
                 cursor: "grabbing",

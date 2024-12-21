@@ -3,25 +3,25 @@
   "license": "proprietary",
   "private": true,
   "scripts": {
-    "build": "node build.mjs",
-    "watch": "node build.mjs --watch"
+    "build": "NODE_OPTIONS=--disable-warning=ExperimentalWarning node build.mjs",
+    "watch": "NODE_OPTIONS=--disable-warning=ExperimentalWarning node build.mjs --watch"
   },
   "devDependencies": {
     "@neos-project/neos-ui-extensibility": "~8.3.11",
     "@neos-project/react-ui-components": "^8.3.11",
-    "@stylexjs/esbuild-plugin": "^0.8.0",
-    "@stylexjs/stylex": "^0.8.0",
+    "@stylexjs/esbuild-plugin": "^0.9.3",
+    "@stylexjs/stylex": "^0.9.3",
     "@types/nearest-color": "^0.4.1",
     "@types/react-redux": "^7.1.34",
     "carbon-neos-loadinganimation": "^1.1.1",
-    "color-name-list": "^10.28.0",
+    "color-name-list": "^11.0.0",
     "colorjs.io": "^0.5.2",
-    "esbuild": "^0.24.0",
-    "eslint": "^9.13.0",
+    "esbuild": "^0.24.2",
+    "eslint": "^9.17.0",
     "nearest-color": "^0.4.4",
     "onchange": "^7.1.0",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.2",
     "react-colorful": "^5.6.1",
-    "typescript-eslint": "^8.11.0"
+    "typescript-eslint": "^8.18.1"
   }
 }
