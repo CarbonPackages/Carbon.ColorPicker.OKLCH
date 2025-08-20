@@ -37,11 +37,6 @@ const options = {
             dev: false,
             generatedCSSFileName: path.resolve(__dirname, "Resources/Public/Plugin.css"),
             stylexImports: ["@stylexjs/stylex"],
-            treeshakeCompensation: true,
-            unstable_moduleResolution: {
-                type: "commonJS",
-                rootDir: __dirname,
-            },
         }),
     ],
 };

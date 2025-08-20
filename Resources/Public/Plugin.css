@@ -1,3 +1,12 @@
+@property --color { syntax: "*"; inherits: false;}
+@property --backgroundColor { syntax: "*"; inherits: false;}
+@property --backgroundSize { syntax: "*"; inherits: false;}
+@property --backgroundImage { syntax: "*"; inherits: false;}
+@property --transform { syntax: "*"; inherits: false;}
+@property --gridTemplateRows { syntax: "*"; inherits: false;}
+@property --opacity { syntax: "*"; inherits: false;}
+@property --transition { syntax: "*"; inherits: false;}
+@property --minHeight { syntax: "*"; inherits: false;}
 :root, .colorpicker-qxjerf{--colorpicker-13jt1m9:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;--colorpicker-1slykfz:var(--fontSize-Base);}
 :root, .colorpicker-14237fs{--colorpicker-1aw32kg:var(--transition-Fast);--colorpicker-1lifwwi:var(--transition-Default);--colorpicker-1gnsdwx:var(--transition-Slow);--colorpicker-2yzugf:cubic-bezier(0.4, 0, 0.2, 1);}
 :root, .colorpicker-1jsd4ll{--colorpicker-nz0haz:calc(var(--spacing-Full) + var(--spacing-Half));--colorpicker-3t0via:var(--spacing-Full);--colorpicker-sqa6xm:var(--spacing-Half);--colorpicker-1mc2e9z:var(--spacing-Quarter);--colorpicker-1zx6wd:2px;--colorpicker-5v2djn:var(--spacing-GoldenUnit);}
