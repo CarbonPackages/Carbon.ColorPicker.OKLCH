@@ -6,6 +6,13 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Eel\ProtectedContextAwareInterface;
 use matthieumastadenis\couleur\ColorFactory;
 
+/**
+ * @phpstan-type ColorCoords array{l: float|int, c: float|int, h: float|int}
+ * @phpstan-type HexColor string
+ * @phpstan-type OklchColor string
+ * @phpstan-type CustomProperty array{coords: string, oklch: OklchColor, hex: HexColor}
+ * @phpstan-type ColorArray array{hex: HexColor, oklch: OklchColor, coords: ColorCoords, customProperty: CustomProperty}
+ */
 #[Flow\Proxy('false')]
 class ConvertHelper implements ProtectedContextAwareInterface
 {
@@ -15,13 +22,13 @@ class ConvertHelper implements ProtectedContextAwareInterface
      * @param string|array $color
      * @param integer $precision
      * @param string $customPropertyName
-     * @return array|null
+     * @return ColorArray|null
      */
     public function toOkLch(
         string|array $color,
         int $precision = 5,
         string $customPropertyName = 'color',
-    ) {
+    ): ?array {
         try {
             $factory = ColorFactory::newOkLch($color, null, null, true);
         }
