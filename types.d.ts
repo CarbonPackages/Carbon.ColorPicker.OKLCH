@@ -235,13 +235,12 @@ declare module "@neos-project/neos-ts-interfaces" {
     // TODO: for some reason (probably due to immer) I can not use ReadonlyArray here
     export interface NodeChildren extends Array<NodeChild> {}
 
-    export interface NodePolicy
-        extends Readonly<{
-            disallowedNodeTypes: NodeTypeName[];
-            canRemove: boolean;
-            canEdit: boolean;
-            disallowedProperties: string[];
-        }> {}
+    export interface NodePolicy extends Readonly<{
+        disallowedNodeTypes: NodeTypeName[];
+        canRemove: boolean;
+        canEdit: boolean;
+        disallowedProperties: string[];
+    }> {}
 
     // TODO: for some reason (probably due to immer) I can not use Readonly here
     export interface Node {
@@ -406,15 +405,14 @@ declare module "@neos-project/neos-ts-interfaces" {
     //
     // Change object from our Changes API
     //
-    export interface Change
-        extends Readonly<{
-            type: string;
-            subject: NodeContextPath;
-            payload: {
-                propertyName: string;
-                value: any;
-            };
-        }> {}
+    export interface Change extends Readonly<{
+        type: string;
+        subject: NodeContextPath;
+        payload: {
+            propertyName: string;
+            value: any;
+        };
+    }> {}
 
     import { SynchronousMetaRegistry, SynchronousRegistry } from "@neos-project/neos-ui-extensibility";
 
