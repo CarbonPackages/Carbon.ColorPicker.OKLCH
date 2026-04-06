@@ -34,8 +34,8 @@ const styles = stylex.create({
         textAlign: "right",
         color: "white",
         fontFamily: fonts.mono,
-        border: 0,
-        background: "none",
+        borderWidth: 0,
+        backgroundColor: "transparent",
         outline: "none",
         "::-webkit-outer-spin-button": {
             display: "none",
@@ -47,7 +47,7 @@ const styles = stylex.create({
         "-moz-appearance": "textfield",
         "-webkit-appearance": "textfield",
         ":focus": {
-            background: "white",
+            backgroundColor: "white",
             color: "black",
         },
     },

@@ -33,7 +33,7 @@ const styles = stylex.create({
         height: sizes.goldenUnit,
         width: "100%",
         borderRadius: sizes.borderRadius,
-        border: 0,
+        borderWidth: 0,
         backgroundColor: colors.contrastNeutral,
         paddingInline: sizes.spacingFull,
         color: "white",

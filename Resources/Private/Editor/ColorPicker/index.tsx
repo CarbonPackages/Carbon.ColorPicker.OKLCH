@@ -48,7 +48,7 @@ const styles = stylex.create({
     },
     error: {
         borderRadius: sizes.borderRadius,
-        background: colors.error,
+        backgroundColor: colors.error,
         padding: sizes.spacingQuarter,
     },
     highlight: {
@@ -69,7 +69,6 @@ const styles = stylex.create({
         minHeight: sizes.goldenUnit,
         borderRadius: sizes.borderRadius,
         cursor: "pointer",
-        background: "none",
         backgroundColor: colors.contrastNeutral,
     },
     popoverButtonPreview: (color, luminance, contrastThreshold) => ({
