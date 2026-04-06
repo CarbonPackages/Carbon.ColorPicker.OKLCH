@@ -12,7 +12,7 @@ Neos:
               type: 'module'
         stylesheets:
           Carbon.ColorPicker.OKLCH:
-            resource: resource://Carbon.ColorPicker.OKLCH/Public/Plugin.css
+            resource: resource://Carbon.ColorPicker.OKLCH/Public/stylex.css
     userInterface:
       translation:
         autoInclude:

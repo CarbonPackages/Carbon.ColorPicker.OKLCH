@@ -1,15 +1,10 @@
 import esbuild from "esbuild";
 import extensibilityMap from "@neos-project/neos-ui-extensibility/extensibilityMap.json" with { type: "json" };
-import stylexPlugin from "@stylexjs/esbuild-plugin";
-import path from "path";
-import { fileURLToPath } from "url";
+import stylex from "@stylexjs/unplugin";
 
-// eslint-disable-next-line no-undef
-const argv = process.argv;
-const watch = argv.includes("--watch");
-const dev = argv.includes("--dev");
+const watch = process.argv.includes("--watch");
+const dev = process.argv.includes("--dev");
 const minify = !dev && !watch;
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import("esbuild").BuildOptions} */
 const options = {
@@ -30,13 +25,15 @@ const options = {
     },
     outdir: "Resources/Public",
     alias: extensibilityMap,
+    metafile: true,
     plugins: [
-        stylexPlugin({
-            classNamePrefix: "colorpicker-",
+        stylex.esbuild({
             useCSSLayers: false,
-            dev: false,
-            generatedCSSFileName: path.resolve(__dirname, "Resources/Public/Plugin.css"),
-            stylexImports: ["@stylexjs/stylex"],
+            classNamePrefix: "colorpicker-",
+            dev,
+            lightningcssOptions: {
+                minify,
+            },
         }),
     ],
 };
