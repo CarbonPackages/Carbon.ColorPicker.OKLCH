@@ -16,7 +16,7 @@
     "carbon-neos-loadinganimation": "^1.2.0",
     "color-name-list": "^14.36.0",
     "colorjs.io": "^0.6.1",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "eslint": "^10.2.0",
     "nearest-color": "^0.4.4",
     "onchange": "^7.1.0",
